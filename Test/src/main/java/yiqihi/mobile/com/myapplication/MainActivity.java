@@ -36,19 +36,19 @@ public class MainActivity extends ActionBarActivity implements View.OnFocusChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rl_header = (RelativeLayout) findViewById(R.id.rl_header);
-        auto= (AutoHideXScrollView) findViewById(R.id.home_refreshable_view);
-        content=View.inflate(this,R.layout.auto,null);
-        listView= (DisScrollListView) content.findViewById(android.R.id.list);
-        List<String> lists=new ArrayList<String>();
-        for(int i=0;i<20;i++){
-            lists.add("ddd"+i);
-        }
-        ArrayAdapter arrayAdapter =new ArrayAdapter(this,android.R.layout.simple_list_item_1,lists);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnScrollListener(this);
-        auto.setHeaderAndFooter(rl_header,null);
-        auto.addChild(content, 1);
+//        rl_header = (RelativeLayout) findViewById(R.id.rl_header);
+//        auto= (AutoHideXScrollView) findViewById(R.id.home_refreshable_view);
+//        content=View.inflate(this,R.layout.auto,null);
+//        listView= (DisScrollListView) content.findViewById(android.R.id.list);
+//        List<String> lists=new ArrayList<String>();
+//        for(int i=0;i<20;i++){
+//            lists.add("ddd"+i);
+//        }
+//        ArrayAdapter arrayAdapter =new ArrayAdapter(this,android.R.layout.simple_list_item_1,lists);
+//        listView.setAdapter(arrayAdapter);
+//        listView.setOnScrollListener(this);
+//        auto.setHeaderAndFooter(rl_header,null);
+//        auto.addChild(content, 1);
     }
 
 
