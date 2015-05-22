@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.myproduct.freetogether.R;
+import com.myproduct.freetogether.adapter.GuideAdapter;
+import com.myproduct.freetogether.bean.Guide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +15,31 @@ import yiqihi.mobile.com.commonlib.customview.MyListView;
 
 public class GuideFragment extends BaseFragment {
     private MyListView myListView;
-    public static final String TAG="tag";
+    public static final String TAG = "tag";
     private String tag;
+    private GuideAdapter mGuideAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tag=getArguments().getString(TAG);
+        tag = getArguments().getString(TAG);
     }
 
     @Override
     public void initView() {
-        myListView=findViewByIdHelper(R.id.mlv_listview);
-        List<String> testString=new ArrayList<String>();
-        for(int i=0;i<30;i++){
-             testString.add("tag=="+i);
+        mGuideAdapter = new GuideAdapter(getActivity());
+        myListView = findViewByIdHelper(R.id.mlv_listview);
+        myListView.setAdapter(mGuideAdapter);
+        List<Guide> listGuide = new ArrayList<Guide>();
+        for (int i = 0; i < 30; i++) {
+            Guide guide = new Guide();
+            listGuide.add(guide);
         }
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,testString);
-        myListView.setAdapter(adapter);
+        initData();
+
+    }
+    public void initData(){
+
     }
 
     @Override
