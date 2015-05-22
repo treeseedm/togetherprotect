@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/customviewpagerindicator/customviewpagerindicator.iml" filepath="$PROJECT_DIR$/customviewpagerindicator/customviewpagerindicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/freetogether/freetogether.iml" filepath="$PROJECT_DIR$/freetogether/freetogether.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myproject.iml" filepath="$PROJECT_DIR$/myproject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/togetherprotect.iml" filepath="$PROJECT_DIR$/togetherprotect.iml" />
     </modules>
   </component>
 </project>
