@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:filter="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_totalLabel"
+            android:text="全部"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:id="@+id/iv_go"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_totalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_bow"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+
+            android:layout_toRightOf="@+id/iv_go"
+            android:id="@+id/tv_totalSize"
+            android:text="共321条"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_centerVertical="true" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_toLeftOf="@+id/btn_ok"
+            android:textSize="20sp"
+            android:text="重置"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:background="@color/white" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:textSize="20sp"
+            android:text="确定"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/sv_filter"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_filtercontainer"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:background="@color/white"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_dazhou"
+                    filter:filtertitle="大洲"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_country"
+                    filter:filtertitle="国家"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_location"
+                    filter:filtertitle="目的地"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_category"
+                    filter:filtertitle="服务类别"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="多选筛选项(直接勾选即可)"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:background="@color/white"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_language"
+                    filter:filtertitle="需要的语言"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_service"
+                    filter:filtertitle="需要的服务"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.custom.view.FilterItemView
+                    android:id="@+id/fv_price"
+                    filter:filtertitle="报价范围"
+                    filter:leftimageRes="@drawable/icon_dazhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

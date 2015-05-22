@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ListView的头部 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/pull_to_refresh_header"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:minHeight="140dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:background="#e9f3f5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="140dp">
+
+            <ImageView
+                android:id="@+id/left_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="120dp"
+                android:background="@drawable/refresh_left_cloud" />
+
+            <ImageView
+                android:id="@+id/right_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/left_cloud"
+                android:layout_marginLeft="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/refresh_bottom_cloud" />
+
+            <ImageView
+                android:id="@+id/bottom_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/refresh_right_cloud" />
+
+            <ImageView
+                android:id="@+id/head_arrowImageView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="140dp"
+                android:visibility="visible" />
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/refresh_buildings"
+                android:visibility="visible"
+                android:layout_marginTop="140dp"
+                 />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

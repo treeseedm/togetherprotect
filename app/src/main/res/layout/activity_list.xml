@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/green">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/iv_back"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back" />
+
+        <FrameLayout
+            android:id="@+id/fl_search"
+            android:layout_toRightOf="@+id/iv_back"
+            android:layout_toLeftOf="@+id/txt_right"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:editable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:minWidth="30dp"
+
+                android:background="@color/transparent"
+                android:textColor="@color/white"
+                android:padding="2dp" />
+
+            <ImageView
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon_search_w" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_username_input_normal" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txt_right"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:gravity="center"
+            android:text="筛选"
+            android:textColor="@color/white"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <yiqihi.mobile.com.commonlib.customview.MyListView
+        android:id="@+id/lv_product"
+        android:layout_below="@+id/rl_header"
+        style="@style/common_listview_style"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="20dip"
+        android:scrollbars="none"
+        android:fadingEdge="none"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="visible"></yiqihi.mobile.com.commonlib.customview.MyListView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rl_header"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/rl_header"
+            android:background="@color/white"
+            android:id="@+id/ll_cityAndSortContainer"
+            android:layout_height="100dp">
+
+            <RadioGroup
+                android:layout_below="@+id/rl_parent"
+                android:id="@+id/rg_cityContainer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp">
+
+                <RadioButton
+                    android:button="@null"
+                    android:background="@drawable/selector_tab"
+                    android:id="@+id/rb_continent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="7dp"
+
+                    android:visibility="gone"
+                    android:textColor="@android:color/black"
+                    android:text="亚洲" />
+
+                <RadioButton
+                    android:id="@+id/rb_country"
+                    android:background="@drawable/selector_tab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@android:color/black"
+                    android:text="中国"
+                    android:button="@null"
+                    android:visibility="gone"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="7dp" />
+
+                <RadioButton
+                    android:background="@drawable/selector_tab"
+                    android:id="@+id/rb_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:text="北京"
+                    android:visibility="visible"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="7dp" />
+            </RadioGroup>
+
+            <RelativeLayout
+                android:layout_below="@+id/rg_cityContainer"
+                android:id="@+id/rl_sort"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/tv_defaultsort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:button="@null"
+                    android:text="默认排序"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_priceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:button="@null"
+
+                    android:layout_centerVertical="true"
+                    android:text="价格"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_sortprice"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableTop="@drawable/sort_up_uncheck"
+                    android:drawableBottom="@drawable/sort_down_uncheck"
+                    android:layout_height="12dp"
+                    android:layout_toRightOf="@+id/tv_priceText" />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_updatetimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_sortupdatetime"
+                    android:layout_centerHorizontal="true"
+                    android:button="@null"
+                    android:text="更新时间"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tv_sortupdatetime"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableTop="@drawable/sort_up_uncheck"
+                    android:drawableBottom="@drawable/sort_down_uncheck"
+                    android:layout_height="12dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_below="@+id/rl_sort"
+                android:id="@+id/v_line"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="#c8c7cc"
+                android:visibility="visible" />
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>

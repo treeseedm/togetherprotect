@@ -1,0 +1,65 @@
+<?xml version='1.0'?>
+<project
+    name="deploy"
+    basedir="/workspace/mobile/android/"
+    default="1.build-all" >
+
+    <tstamp prefix="build." >
+
+        <format
+            pattern=""
+            property="time" />
+    </tstamp>
+
+    <property
+        name="BuildPath"
+        value="/workspace/mobile/android/release" />
+
+    <property
+        name="netty4.x.home"
+        value="${basedir}/netty4.x" />
+
+    <property
+        name="netty4.x.src"
+        value="${netty4.x.home}/src" />
+
+    <property
+        name="netty4.x.lib"
+        value="${netty4.x.home}/lib" />
+
+    <property
+        name="netty4.x.build"
+        value="${netty4.x.home}/bin" />
+
+    <property
+        name="netty4.x.jar.release.name"
+        value="org.netty4.x.jar" />
+
+    <target
+        name="netty4.x.jar"
+        depends="" >
+
+        <delete dir="${BuildPath}" >
+
+            <include name="${netty4.x.jar.release.name}" />
+        </delete>
+
+        <jar
+            encoding="UTF-8"
+            jarfile="${BuildPath}/${netty4.x.jar.release.name}" >
+
+            <fileset dir="${netty4.x.build}" >
+
+                <include name="io/**" />
+
+                <exclude name="**/*Test" />
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="1.build-all" >
+
+        <antcall target="netty4.x.jar" />
+    </target>
+
+</project>

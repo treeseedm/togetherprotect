@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_timeicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_toRightOf="@+id/iv_timeicon"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="五分钟前" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@drawable/bg_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+
+            android:id="@+id/sdv_face" />
+
+        <RelativeLayout
+            android:id="@+id/rl_guideinfoContainer"
+            android:layout_toRightOf="@+id/sdv_face"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="我是标题"
+                android:id="@+id/title" />
+
+            <LinearLayout
+                android:id="@+id/ll_addressContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="车辆类型:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="5座车"
+                    android:id="@+id/tv_cartype" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_timeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_addressContainer"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="出发日期" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="11月23日"
+                    android:id="@+id/tv_time" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_locationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_timeContainer"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="目的地:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="意大利"
+                    android:id="@+id/tv_location" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pingtanContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_locationContainer"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="同伴平摊:" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="￥500"
+                    android:id="@+id/tv_money" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_desContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_guideinfoContainer">
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/fl_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                fresco:placeholderImage="@mipmap/ic_launcher"
+                android:layout_below="@+id/fl_container"
+                android:id="@+id/sdv_car" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_des"
+                android:text="这里是描述"
+                android:layout_below="@+id/sdv_car" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/rl_desContainer"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_bow" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_peoplenum"
+                android:text="人数" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_remaintime"
+                android:layout_toRightOf="@+id/tv_peoplenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_bow" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_remaintime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩2天"
+                android:id="@+id/tv_remainday" />
+
+            <Button
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="立即拼车"
+                android:id="@+id/btn_add"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

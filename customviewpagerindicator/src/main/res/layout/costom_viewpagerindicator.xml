@@ -1,0 +1,28 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+
+    android:layout_height="150dp">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <yiqihi.mobile.com.customviewpagerindicator.PageIndicator
+            android:id="@+id/pi_home_page_indictor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+    </LinearLayout>
+</RelativeLayout>

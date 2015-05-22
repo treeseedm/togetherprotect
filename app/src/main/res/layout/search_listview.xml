@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_refreshlist"
+    android:layout_width="match_parent"
+    android:background="@drawable/common_bg"
+    android:layout_height="wrap_content">
+
+    <yiqihi.mobile.com.commonlib.customview.DisScrollListView
+        android:id="@android:id/list"
+        style="@style/common_listview_style"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="20dip"
+        android:scrollbars="none"
+        android:fadingEdge="none"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="visible" />
+</RelativeLayout>

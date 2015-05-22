@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:background="@color/grey">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_picture"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/no_connect_img"
+                fresco:placeholderImage="@drawable/no_connect_img"
+                fresco:roundedCornerRadius="5dp"
+                fresco:roundBottomLeft="false"
+                fresco:roundBottomRight="false" />
+
+            <ImageView
+                android:id="@+id/iv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom"
+                android:background="@color/white" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_face"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                fresco:roundAsCircle="true"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_priceContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/bg_money"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1334"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_locationConteiner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/dark_light"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_y_dingwei" />
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/tv_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="日本" />
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/tv_perprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+
+            android:background="@color/white"
+            android:layout_below="@+id/fl_container">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/black"
+
+                android:text="fdsaaaaaaaaaaaaaaaaaaa" />
+
+            <ImageView
+                android:id="@+id/iv_read"
+                android:visibility="gone"
+                android:src="@drawable/icon_read"
+                android:layout_gravity="bottom|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

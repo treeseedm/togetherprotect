@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="5dp"
+        android:gravity="center_vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/left_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="大洲"
+            android:layout_toRightOf="@+id/left_icon"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
+         <TextView
+             android:visibility="gone"
+             android:layout_toRightOf="@+id/tv_title"
+             android:id="@+id/tv_selectNum"
+             android:text="2"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5dp"
+             android:gravity="center"
+             android:textColor="@color/white"
+             android:layout_width="20dp"
+             android:layout_height="20dp"
+             android:background="@drawable/bg_circle"/>
+
+        <TextView
+            android:id="@+id/tv_saveorupdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_centerVertical="true"
+            android:textColor="@color/blue"
+           android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/iv_rightView"/>
+        <ImageView
+            android:id="@+id/iv_rightView"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_bow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/rl_title"
+        android:id="@+id/ll_container"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <yiqihi.mobile.com.commonlib.customview.DisScrollGridView
+            android:id="@+id/gv_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:numColumns="2"
+            android:scrollbars="none" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+</RelativeLayout>

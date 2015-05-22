@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="50dp"
+    android:background="@color/grey">
+    <TextView
+        android:id="@+id/iv_lefticon"
+        android:layout_alignParentLeft="true"
+        android:layout_width="5dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+       android:background="@color/green"
+        />
+    <TextView
+        android:layout_toRightOf="@+id/iv_lefticon"
+        android:id="@+id/tv_title"
+        android:text="title"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:clickable="false"/>
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_toLeftOf="@+id/iv_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="More"
+        android:textColor="#666666"
+        android:layout_centerVertical="true"
+        android:textSize="10dp"/>
+    <ImageView
+        android:id="@+id/iv_go"
+        android:src="@drawable/icon_bow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

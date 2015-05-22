@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="上传图片"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#eb0000" />
+
+    <Button
+        android:id="@+id/start_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="20dp"
+        android:text="拍照" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#cccccc" />
+
+    <Button
+        android:id="@+id/select_from_gallery"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="20dp"
+        android:text="手机相册" />
+
+</LinearLayout>
