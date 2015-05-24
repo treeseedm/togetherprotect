@@ -9,7 +9,7 @@ public class Guide {
     public String title;
     public String snapshot;
     public String mapId;
-    public Integer createDate;
+    public Long createDate;
     public String country;
     public String city;
     public Integer level;
