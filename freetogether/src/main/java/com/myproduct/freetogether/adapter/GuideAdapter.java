@@ -8,13 +8,13 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.myproduct.freetogether.R;
-import com.myproduct.freetogether.bean.Guide;
+import com.myproduct.freetogether.bean.Item;
 
 import org.apmem.tools.layouts.FlowLayout;
 
 import yiqihi.mobile.com.commonlib.AdapterBase;
 
-public class GuideAdapter extends AdapterBase<Guide> {
+public class GuideAdapter extends AdapterBase<Item> {
     private static final String TAG = "GuideAdapter";
     private Context mContext;
 
@@ -57,7 +57,7 @@ public class GuideAdapter extends AdapterBase<Guide> {
             vh = (ViewHolder) convertView.getTag();
         }
         try {
-            Guide guide = getList().get(position);
+            Item guide = getList().get(position);
             vh.tv_publishtime.setText("五分钟前");
             vh.title.setText("我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题");
             vh.tv_address.setText("我是地址");

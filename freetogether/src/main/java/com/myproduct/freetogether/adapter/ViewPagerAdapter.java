@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.myproduct.freetogether.R;
-import com.myproduct.freetogether.fragment.GuideFragment;
+import com.myproduct.freetogether.fragment.ActivityFragment;
 
 import yiqihi.mobile.com.commonlib.customview.PagerSlidingTabStrip;
 
@@ -36,9 +34,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements PagerSlidi
     @Override
     public Fragment getItem(int position) {
         String tag = mTags[position];
-        GuideFragment fragment = new GuideFragment();
+        ActivityFragment fragment = new ActivityFragment();
         Bundle params = new Bundle();
-        params.putString(GuideFragment.TAG, tag);
+        params.putString(ActivityFragment.CATALOG, tag);
         fragment.setArguments(params);
         return fragment;
     }
@@ -57,8 +55,31 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements PagerSlidi
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.sdv_image);
         TextView mTitle = (TextView) view.findViewById(R.id.tv_tab);
         View mIndicatoreColor = view.findViewById(R.id.indicator_color);
-        simpleDraweeView.setImageURI(Uri.parse("http://i8.baidu.com/it/u=1421369476,949135805&fm=73"));
-        mTitle.setText("哇咔咔" + position);
+        int resid=0;
+        switch (position){
+            case 0:
+               resid=R.drawable.icon_guide_selected;
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.guide_color));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.guide_color));
+                break;
+            case 1:
+                resid=R.drawable.icon_car_default;
+                break;
+            case 2:
+                resid=R.drawable.icon_play_default;
+                break;
+            case 3:
+                resid=R.drawable.icon_playwithyou_default;
+                break;
+            case 4:
+                resid=R.drawable.icon_daigou_default;
+                break;
+            default:
+                resid=R.drawable.icon_guide_selected;
+                break;
+        }
+        simpleDraweeView.setImageResource(resid);
+        mTitle.setText(mTags[position]);
 
         return view;
     }
@@ -70,28 +91,28 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements PagerSlidi
         Log.v("position===","=="+position);
         switch (position) {
             case 0:
-                mTitle.setTextColor(mContext.getResources().getColor(R.color.red));
-                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.red));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.guide_color));
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.guide_color));
                 mIndicatoreColor.setVisibility(View.VISIBLE);
             break;
             case 1:
-                mTitle.setTextColor(mContext.getResources().getColor(R.color.green));
-                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.green));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.car_color));
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.car_color));
                 mIndicatoreColor.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                mTitle.setTextColor(mContext.getResources().getColor(R.color.blue));
-                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.blue));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.play_color));
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.play_color));
                 mIndicatoreColor.setVisibility(View.VISIBLE);
                 break;
             case 3:
-                mTitle.setTextColor(mContext.getResources().getColor(R.color.dark_light));
-                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.dark_light));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.playwith_color));
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.playwith_color));
                 mIndicatoreColor.setVisibility(View.VISIBLE);
                 break;
             case 4:
-                mTitle.setTextColor(mContext.getResources().getColor(R.color.red));
-                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.red));
+                mTitle.setTextColor(mContext.getResources().getColor(R.color.daigou_color));
+                mIndicatoreColor.setBackgroundColor(mContext.getResources().getColor(R.color.daigou_color));
                 mIndicatoreColor.setVisibility(View.VISIBLE);
                 break;
             default:

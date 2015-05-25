@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/common_bg">
 
-    <include layout="@layout/commonheader" />
+    <include layout="@layout/common_header_info" />
 
     <RelativeLayout
         android:layout_width="match_parent"

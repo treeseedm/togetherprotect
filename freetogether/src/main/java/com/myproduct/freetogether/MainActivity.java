@@ -30,7 +30,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this, new String[]{"tab1", "tab2", "tab3", "tab4", "tab5"});
+        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this, new String[]
+                {"拼导游", "拼租车", "带你玩", "陪你玩", "免费代购"});
         mSlidingTab = findViewByIdHelper(R.id.pagerslidingtab);
         mViewPager = findViewByIdHelper(R.id.vp_freetogether);
         mViewPager.setAdapter(mAdapter);

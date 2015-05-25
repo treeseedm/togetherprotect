@@ -1,1 +1,1 @@
-include ':app', ':customviewpagerindicator', ':commonlib', ':Test', ':freetogether'
+include ':app', ':customviewpagerindicator', ':commonlib', ':Test', ':freetogether', ':myprojectcomonlib'

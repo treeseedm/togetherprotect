@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/header"
-        layout="@layout/commonheader" />
+        layout="@layout/common_header_info" />
 
     <RelativeLayout
         android:id="@+id/rl_search"

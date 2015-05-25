@@ -9,7 +9,7 @@
         android:id="@+id/sdv_image"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        fresco:placeholderImage="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
         fresco:roundAsCircle="true" />
     <TextView
         android:layout_below="@+id/sdv_image"

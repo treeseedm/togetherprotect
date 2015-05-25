@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="guide_color">#18925a</color>
+    <color name="car_color">#ff2663</color>
+    <color name="play_color">#94ca3e</color>
+    <color name="playwith_color">#ff6c00</color>
+    <color name="daigou_color">#2395e8</color>
+</resources>
