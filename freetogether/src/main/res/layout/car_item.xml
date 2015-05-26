@@ -15,12 +15,13 @@
             android:id="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/icon_ago" />
 
         <TextView
             android:layout_toRightOf="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
+            android:id="@+id/tv_publishtime"
             android:layout_height="wrap_content"
             android:text="五分钟前" />
     </RelativeLayout>
@@ -168,29 +169,13 @@
             android:layout_below="@+id/rl_desContainer"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_centerVertical="true"
-                android:id="@+id/iv_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
-
-            <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/iv_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_peoplenum"
-                android:text="人数" />
-
             <ImageView
                 android:layout_centerVertical="true"
                 android:id="@+id/iv_remaintime"
                 android:layout_toRightOf="@+id/tv_peoplenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
+                android:src="@drawable/icon_expire" />
 
             <TextView
                 android:layout_centerVertical="true"

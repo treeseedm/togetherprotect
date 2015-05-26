@@ -15,7 +15,7 @@
             android:id="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/icon_delaytime" />
 
         <TextView
             android:layout_toRightOf="@+id/iv_timeicon"
@@ -33,12 +33,10 @@
         android:layout_height="wrap_content">
 
 
-
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            fresco:placeholderImage="@mipmap/ic_launcher"
-
+            fresco:roundAsCircle="true"
             android:id="@+id/sdv_face" />
 
         <RelativeLayout
@@ -53,18 +51,24 @@
                 android:maxLines="2"
                 android:text="我是标题"
                 android:id="@+id/title" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/iv_joinStatus"
+                android:src="@drawable/bg_yijiaru"/>
 
             <LinearLayout
                 android:id="@+id/ll_addressContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-              android:layout_below="@+id/title"
+                android:layout_below="@+id/title"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_bow"
+                    android:src="@drawable/icon_location"
                     android:id="@+id/iv_location" />
 
                 <TextView
@@ -79,13 +83,13 @@
                 android:id="@+id/ll_timeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:layout_below="@+id/ll_addressContainer"
+                android:layout_below="@+id/ll_addressContainer"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_bow"
+                    android:src="@drawable/icon_rili"
                     android:id="@+id/iv_time" />
 
                 <TextView
@@ -100,7 +104,7 @@
                 android:id="@+id/ll_pingtanContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:layout_below="@+id/ll_timeContainer"
+                android:layout_below="@+id/ll_timeContainer"
                 android:orientation="horizontal">
 
                 <TextView
@@ -148,7 +152,7 @@
                 android:id="@+id/iv_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
+                android:src="@drawable/icon_person" />
 
             <TextView
                 android:layout_centerVertical="true"
@@ -164,7 +168,7 @@
                 android:layout_toRightOf="@+id/tv_peoplenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
+                android:src="@drawable/icon_delaytime" />
 
             <TextView
                 android:layout_centerVertical="true"

@@ -17,6 +17,8 @@ public class MainActivity extends BaseActivity {
     private PagerSlidingTabStrip mSlidingTab;
     private ViewPager mViewPager;
     private ViewPagerAdapter mAdapter;
+    private String mCountry = "";
+    private String mLocation = "";
 
     @Override
     public int getResourceView() {
@@ -30,8 +32,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this, new String[]
-                {"拼导游", "拼租车", "带你玩", "陪你玩", "免费代购"});
+        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this,mCountry,mLocation );
         mSlidingTab = findViewByIdHelper(R.id.pagerslidingtab);
         mViewPager = findViewByIdHelper(R.id.vp_freetogether);
         mViewPager.setAdapter(mAdapter);

@@ -5,26 +5,32 @@ import java.util.List;
 public class Item {
 
     public String id;
-    public Integer userId;
+    public Long userId;//头像
     public String userName;
-    public Integer catalog;
-    public String title;
-    public Integer person;
-    public Integer day;
-    public String deptDate;
+    public Integer catalog;//类型7：AA拼导游;8：AA拼车;9：海外代购;10：带你玩 11：陪你玩
+    public String title;//标题
+    public Integer person;//人数
+    public Integer day;//天数
+    public String deptDate;//出发日期
     public String description;
-    public List<Picture> pictures = null;
+    public List<Picture> pictures = null;//4)	图片：pictures，横向平铺最多3个
     public String ago;
-    public String location;
-    public Integer recruiteCount;
-    public Integer personPrice;
-    public String car;
-    public Integer joinStatus;
-    public String sex;
+    public String location;//地点
+    public Integer recruiteCount;//还差几人
+    public Integer personPrice;//费用平摊
+    public String car;//车辆类型
+    public Integer joinStatus;//加入状态
+//    joinStatus：0，不显示这个标签
+//    joinStatus:1:显示审核中标签
+//    joinStatus:2:显示已拒绝标签
+//    joinStatus:3:显示已加入
+//    8)自动销毁：expireTime
+
+    public String sex;//性别要求
     public Boolean isFull;
     public Boolean isDeal;
     public Boolean isOwner;
-    public String expireTime;
+    public String expireTime;//自动销毁
     public String msgId;
     public Integer unReadMsg;
 

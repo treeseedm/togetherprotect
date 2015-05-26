@@ -20,9 +20,9 @@
 
         <ImageView
             android:id="@+id/iv_search"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_search" />
 
         <TextView
             android:layout_toRightOf="@+id/iv_search"
