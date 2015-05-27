@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.EventListener;
+
 import de.greenrobot.event.EventBus;
 
 
@@ -20,6 +22,7 @@ public abstract class BaseFragment extends Fragment {
     private View mRootView;// 布局
     public int mResource;// 布局id
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -28,11 +31,13 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(getResource(), container, false);
+
         initView();
         setListeners();
 
@@ -45,6 +50,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public abstract void initView();
+
+
 
     public void setListeners() {
     }
@@ -68,5 +75,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    public void onEvent(EventListener eventListener) {
+
     }
 }

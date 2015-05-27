@@ -20,11 +20,6 @@ public class Item {
     public Integer personPrice;//费用平摊
     public String car;//车辆类型
     public Integer joinStatus;//加入状态
-//    joinStatus：0，不显示这个标签
-//    joinStatus:1:显示审核中标签
-//    joinStatus:2:显示已拒绝标签
-//    joinStatus:3:显示已加入
-//    8)自动销毁：expireTime
 
     public String sex;//性别要求
     public Boolean isFull;
@@ -33,5 +28,11 @@ public class Item {
     public String expireTime;//自动销毁
     public String msgId;
     public Integer unReadMsg;
+    public String creditPrice;//费用平摊
+    //城市
+    public String value;
+    public String continent;
+    public String type;
+    public String country;
 
 }

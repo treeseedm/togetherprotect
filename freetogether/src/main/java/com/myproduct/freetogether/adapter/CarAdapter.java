@@ -86,25 +86,56 @@ public class CarAdapter extends AdapterBase<Item> {
             int catalog = item.catalog;
             String[] tags = null;
             switch (catalog) {
-                case 7:
+                case 8:
                     tags = new String[]{"AA拼车", "还差" + item.recruiteCount + "人"};
+                    break;
+                case 9:
+                    tags = new String[]{"求玩家", "还差" + item.recruiteCount + "人"};
+                    break;
+                case 10:
+                    tags = new String[]{"陪你玩", "还差" + item.recruiteCount + "人"};
                     break;
                 default:
                     break;
             }
             vh.fl_container.removeAllViews();
+            String addText="";
             for (int i = 0; tags != null && i < tags.length; i++) {
                 Button view = (Button) View.inflate(mContext, R.layout.flow_button, null);
                 view.setText(tags[i]);
 
                 switch (catalog) {
-                    case 7:
+                    case 8:
+                        addText="立即拼车";
+                        vh.btn_add.setBackgroundResource(R.drawable.bg_car_add);
                         if (i == 0) {
-                            view.setBackgroundResource(R.drawable.bg_guide);
+                            view.setBackgroundResource(R.drawable.bg_car);
                             view.setTextColor(mContext.getResources().getColor(R.color.white));
                         } else {
-                            view.setBackgroundResource(R.drawable.bg_guide_recruitecount);
-                            view.setTextColor(mContext.getResources().getColor(R.color.guide_color));
+                            view.setBackgroundResource(R.drawable.bg_car_recruitecount);
+                            view.setTextColor(mContext.getResources().getColor(R.color.car_color));
+                        }
+                        break;
+                    case 9:
+                        addText="参与邀请";
+                        vh.btn_add.setBackgroundResource(R.drawable.bg_play_add);
+                        if (i == 0) {
+                            view.setBackgroundResource(R.drawable.bg_play);
+                            view.setTextColor(mContext.getResources().getColor(R.color.white));
+                        } else {
+                            view.setBackgroundResource(R.drawable.bg_play_recruitecount);
+                            view.setTextColor(mContext.getResources().getColor(R.color.play_color));
+                        }
+                        break;
+                    case 10:
+                        addText="参与邀请";
+                        vh.btn_add.setBackgroundResource(R.drawable.bg_playwith_add);
+                        if (i == 0) {
+                            view.setBackgroundResource(R.drawable.bg_playwith);
+                            view.setTextColor(mContext.getResources().getColor(R.color.white));
+                        } else {
+                            view.setBackgroundResource(R.drawable.bg_play_recruitecount);
+                            view.setTextColor(mContext.getResources().getColor(R.color.playwith_color));
                         }
                         break;
                     default:
@@ -120,9 +151,9 @@ public class CarAdapter extends AdapterBase<Item> {
             }else if(item.isFull&&item.joinStatus!=0){
                 vh.btn_add.setText("查看状态");
             }else{
-                vh.btn_add.setText("立即拼车");
+                vh.btn_add.setText(addText);
             }
-            vh.btn_add.setBackgroundResource(R.drawable.bg_car_add);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

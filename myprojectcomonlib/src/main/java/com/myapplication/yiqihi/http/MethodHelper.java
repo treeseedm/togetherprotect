@@ -102,11 +102,10 @@ public class MethodHelper {
         return object;
     }
     public static BasicDBObject readActivities(int pageNumber,int catalog,String country,String location){
-        BasicDBObject oReq=ClientUtil.getClientInstant().newQuery(MODULENAME,8);
+        BasicDBObject oReq=ClientUtil.getClientInstant().newQuery(MODULENAME,6);
         oReq.append("pageNumber",pageNumber);
         oReq.append("catalog",catalog);
         oReq.append("country",country);
-        oReq.append("continent",country);
         oReq.append("location",location);
         return oReq;
     }

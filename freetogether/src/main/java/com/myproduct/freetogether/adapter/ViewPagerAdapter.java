@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,9 +18,9 @@ import com.myproduct.freetogether.fragment.ActivityFragment;
 
 import yiqihi.mobile.com.commonlib.customview.PagerSlidingTabStrip;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.ViewTabProvider {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter implements PagerSlidingTabStrip.ViewTabProvider {
     private String[] mTags=new String[]
-            {"拼导游", "拼租车", "带你玩", "陪你玩", "免费代购"};
+            {"拼导游", "拼租车", "求玩家", "陪你玩", "免费代购"};
     private Context mContext;
     private int[] mCatalog=new int[]{7,8,9,10,11};
     private GuideAdapter mGuideAdapter;

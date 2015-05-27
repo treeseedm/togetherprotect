@@ -39,6 +39,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         public View getPageView(int position);
 
         public void updateViewState(View view, int position);
+        public void setDefaultView(View view ,int position);
     }
 
     // @formatter:off
@@ -409,7 +410,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                 if (i == position) {
                     ((ViewTabProvider) pager.getAdapter()).updateViewState(v, position);
                 }else{
-                    ((ViewTabProvider) pager.getAdapter()).updateViewState(v, 10000);
+                    ((ViewTabProvider) pager.getAdapter()).setDefaultView(v, i);
                 }
 
             }

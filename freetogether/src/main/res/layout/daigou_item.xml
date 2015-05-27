@@ -15,12 +15,13 @@
             android:id="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/icon_ago" />
 
         <TextView
             android:layout_toRightOf="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
+            android:id="@+id/tv_publishtime"
             android:layout_height="wrap_content"
             android:text="五分钟前" />
     </RelativeLayout>
@@ -51,60 +52,18 @@
                 android:text="我是标题"
                 android:id="@+id/title" />
 
-            <LinearLayout
-                android:id="@+id/ll_addressContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="车辆类型:" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="5座车"
-                    android:id="@+id/tv_cartype" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_timeContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_addressContainer"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="出发日期" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="11月23日"
-                    android:id="@+id/tv_time" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_locationContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_timeContainer"
+                android:layout_below="@+id/title"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="目的地:" />
+                    android:src="@drawable/icon_location"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,26 +73,7 @@
                     android:id="@+id/tv_location" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_pingtanContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_locationContainer"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="同伴平摊:" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="￥500"
-                    android:id="@+id/tv_money" />
-            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -147,26 +87,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                fresco:placeholderImage="@mipmap/ic_launcher"
                 android:layout_below="@+id/fl_container"
-                android:layout_height="wrap_content">
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:layout_width="fill_parent"
-                    android:layout_height="100dp"
-                    fresco:placeholderImage="@mipmap/ic_launcher"
-                    android:layout_weight="1"
-                    android:id="@+id/sdv_left" />
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:layout_width="fill_parent"
-                    android:layout_height="100dp"
-                    fresco:placeholderImage="@mipmap/ic_launcher"
-                    android:layout_weight="1"
-                    android:id="@+id/sdv_right" />
-            </LinearLayout>
-
+                android:id="@+id/sdv_car" />
 
             <TextView
 
@@ -185,26 +111,11 @@
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:id="@+id/iv_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
-
-            <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/iv_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_peoplenum"
-                android:text="人数" />
-
-            <ImageView
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_remaintime"
                 android:layout_toRightOf="@+id/tv_peoplenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_bow" />
+                android:src="@drawable/icon_expire" />
 
             <TextView
                 android:layout_centerVertical="true"
