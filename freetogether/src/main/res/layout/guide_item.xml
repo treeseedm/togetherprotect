@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp">
 
     <RelativeLayout
 
@@ -15,7 +17,7 @@
             android:id="@+id/iv_timeicon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/icon_delaytime" />
+            android:src="@drawable/icon_ago" />
 
         <TextView
             android:layout_toRightOf="@+id/iv_timeicon"
@@ -23,7 +25,8 @@
             android:layout_centerVertical="true"
             android:id="@+id/tv_publishtime"
             android:layout_height="wrap_content"
-            android:text="五分钟前" />
+            android:text="五分钟前"
+            android:layout_marginLeft="10dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -34,12 +37,13 @@
 
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             fresco:roundAsCircle="true"
             android:id="@+id/sdv_face" />
 
         <RelativeLayout
+            android:layout_marginLeft="10dp"
             android:id="@+id/rl_guideinfoContainer"
             android:layout_toRightOf="@+id/sdv_face"
             android:layout_width="match_parent"
@@ -49,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
+                android:textColor="@color/dark"
                 android:text="我是标题"
                 android:id="@+id/title" />
             <ImageView
@@ -63,15 +68,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_location"
-                    android:id="@+id/iv_location" />
+                    android:id="@+id/iv_location"
+                    />
 
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -84,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_addressContainer"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -97,7 +108,8 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="我是时间"
-                    android:id="@+id/tv_time" />
+                    android:id="@+id/tv_time"
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +117,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_timeContainer"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,7 +131,8 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="￥500"
-                    android:id="@+id/tv_money" />
+                    android:id="@+id/tv_money"
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -126,9 +140,12 @@
             android:id="@+id/rl_desContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/rl_guideinfoContainer">
 
             <org.apmem.tools.layouts.FlowLayout
+               android:gravity="center_vertical"
+                android:paddingLeft="5dp"
                 android:id="@+id/fl_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
@@ -145,14 +162,17 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/rl_desContainer"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_centerVertical="true"
                 android:id="@+id/iv_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_person" />
+                android:src="@drawable/icon_person"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_centerVertical="true"
@@ -160,7 +180,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_peoplenum"
-                android:text="人数" />
+                android:text="人数"
+                android:visibility="gone"/>
 
             <ImageView
                 android:layout_centerVertical="true"
@@ -168,7 +189,9 @@
                 android:layout_toRightOf="@+id/tv_peoplenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_delaytime" />
+
+                android:src="@drawable/icon_expire"
+                />
 
             <TextView
                 android:layout_centerVertical="true"
@@ -176,15 +199,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="剩2天"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/tv_remainday" />
 
             <Button
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="立即加入"
+                android:textColor="@color/white"
                 android:id="@+id/btn_add"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey"/>
     </RelativeLayout>
 </LinearLayout>

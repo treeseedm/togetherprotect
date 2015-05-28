@@ -133,6 +133,7 @@ public class GuideAdapter extends AdapterBase<Item> {
             }else{
                 vh.btn_add.setText("立即加入");
             }
+
             vh.btn_add.setBackgroundResource(R.drawable.bg_guide_add);
         } catch (Exception e) {
             e.printStackTrace();

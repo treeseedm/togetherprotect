@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.myapplication.yiqihi.constant.Constants;
 import com.myproduct.freetogether.adapter.ViewPagerAdapter;
@@ -18,6 +19,7 @@ import yiqihi.mobile.com.commonlib.customview.PagerSlidingTabStrip;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG="MainActivity";
     private PagerSlidingTabStrip mSlidingTab;
     private ViewPager mViewPager;
     private ViewPagerAdapter mAdapter;
@@ -25,7 +27,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private String mLocation = "";
     private RelativeLayout rl_search;
     private String mAction;
-
+    private TextView tv_title;
     @Override
     public int getResourceView() {
         return R.layout.activity_main;
@@ -53,6 +55,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mViewPager.setOffscreenPageLimit(5);
         mSlidingTab.setViewPager(mViewPager);
         mSlidingTab.updateTextColor(0);
+        tv_title=findViewByIdHelper(R.id.tv_title);
+        tv_title.setText("自由结伴");
     }
 
     @Override

@@ -33,7 +33,7 @@
         android:layout_centerInParent="true"/>
     <ImageView
         android:id="@+id/iv_phone"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_phone"
@@ -44,9 +44,10 @@
         android:id="@+id/iv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_more"
+        android:src="@drawable/icon_search_w"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
+        android:visibility="visible"
         android:layout_alignParentRight="true"/>
     <TextView
         android:id="@+id/txt_right"
@@ -56,5 +57,6 @@
          android:textColor="@color/white"
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"
+        android:visibility="gone"
         android:layout_alignParentRight="true"/>
 </RelativeLayout>

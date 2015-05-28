@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,6 +28,7 @@ public class CarAdapter extends AdapterBase<Item> {
     public CarAdapter(Context context) {
         this.mContext = context;
     }
+    private ViewGroup.LayoutParams mParams;
 
     private class ViewHolder {
         TextView tv_publishtime, title, tv_cartype, tv_time, tv_money, tv_des, tv_location, tv_remainday;
@@ -103,7 +105,9 @@ public class CarAdapter extends AdapterBase<Item> {
             for (int i = 0; tags != null && i < tags.length; i++) {
                 Button view = (Button) View.inflate(mContext, R.layout.flow_button, null);
                 view.setText(tags[i]);
-
+                FlowLayout.LayoutParams params=new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMargins(30,30,30,30);
+                view.setLayoutParams(params);
                 switch (catalog) {
                     case 8:
                         addText="立即拼车";
