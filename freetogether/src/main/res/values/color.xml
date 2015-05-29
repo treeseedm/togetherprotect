@@ -5,4 +5,5 @@
     <color name="play_color">#94ca3e</color>
     <color name="playwith_color">#ff6c00</color>
     <color name="daigou_color">#2395e8</color>
+    <color name="color_00000000">#00000000</color>
 </resources>

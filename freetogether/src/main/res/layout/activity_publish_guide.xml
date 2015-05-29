@@ -33,19 +33,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="标题　　" />
+                        android:text="标题　　"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:id="@+id/et_title"
+                        android:textColorHighlight="@color/grey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:background = "@color/color_00000000"
                         android:layout_marginLeft="10dp"
                         android:hint="一句话说明需求" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <LinearLayout
@@ -55,6 +60,8 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="目的地　" />
@@ -64,12 +71,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:hint="输入您要去的城市，用逗号间隔"
+                        android:textSize="12sp"
+                        android:background = "@color/color_00000000"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <RelativeLayout
@@ -84,7 +93,9 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="出发日期" />
+                        android:text="出发日期"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:layout_toRightOf="@+id/tv_datedes"
@@ -93,7 +104,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"
+                        android:background = "@color/color_00000000"/>
 
                     <ImageView
                         android:layout_centerVertical="true"
@@ -105,7 +118,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <LinearLayout
@@ -117,19 +130,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="出行天数" />
+                        android:text="出行天数"   android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:id="@+id/et_datanum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="3" />
+                        android:hint="3"  android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <RelativeLayout
@@ -143,7 +158,8 @@
                         android:id="@+id/tv_car"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="使用车辆" />
+                        android:text="使用车辆"  android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:layout_centerVertical="true"
@@ -152,7 +168,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="导游私家车" />
+                        android:text="导游私家车"  android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000"/>
 
                     <ImageView
                         android:layout_centerVertical="true"
@@ -164,7 +181,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <LinearLayout
@@ -176,19 +193,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="您共几人" />
+                        android:text="您共几人"  android:textSize="14sp"
+                        android:textColor="@color/dark" />
 
                     <EditText
                         android:id="@+id/et_totalpeople"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="3" />
+                        android:hint="3"  android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <LinearLayout
@@ -200,19 +219,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="招募人数" />
+                        android:text="招募人数"  android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:id="@+id/et_zhaomupeople"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="3" />
+                        android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <LinearLayout
@@ -224,19 +245,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="预算金额" />
+                        android:text="预算金额" android:textSize="14sp"
+                        android:textColor="@color/dark" />
 
                     <EditText
                         android:id="@+id/et_money"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="1" />
+                        android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <RelativeLayout
@@ -250,7 +273,8 @@
                         android:id="@+id/tv_pingtan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="平摊方式" />
+                        android:text="平摊方式" android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:layout_toRightOf="@+id/tv_pingtan"
@@ -258,7 +282,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="AA" />
+                        android:text="AA" android:textSize="14sp"
+                        android:textColor="@color/dark" android:background = "@color/color_00000000"/>
 
                     <ImageView
                         android:layout_alignParentRight="true"
@@ -269,7 +294,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <RelativeLayout
@@ -280,26 +305,28 @@
                     android:padding="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:id="@+id/iv_edit"
-                        android:src="@mipmap/icon_bow" />
+                        android:src="@drawable/icon_edit" />
 
                     <TextView
                         android:id="@+id/tv_destext"
                         android:layout_toRightOf="@+id/iv_edit"
+                        android:layout_alignBaseline="@+id/iv_edit"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="详细描述" />
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="详细描述"/>
 
                     <EditText
                         android:id="@+id/et_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minLines="3"
-                        android:layout_below="@+id/iv_edit"
+                        android:layout_below="@+id/tv_destext"
                         android:hint="请输入信息..."
-                        android:layout_alignLeft="@+id/tv_destext" />
+                        android:layout_alignLeft="@+id/tv_destext" android:background = "@color/color_00000000"/>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -314,34 +341,40 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:gravity="center_vertical">
 
                     <ImageView
                         android:id="@+id/iv_myinfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_bow" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_myinfo" />
 
                     <TextView
+                        android:layout_toRightOf="@+id/iv_myinfo"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:text="我的信息" />
 
                     <FrameLayout
                         android:layout_toLeftOf="@+id/iv_myinfo_go"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content">
 
-                        <com.gome.ecmall.custom.RoundProgressBar
+                        <yiqihi.mobile.com.commonlib.customview.RoundProgressBar
                             android:id="@+id/myinfo_progress_bar"
-                            android:layout_width="70dip"
+                            android:layout_width="40dip"
                             android:layout_centerInParent="true"
-                            android:layout_height="70dip"
+                            android:layout_height="40dip"
                             android_custom:roundColor="#EEEEEE"
                             android_custom:roundProgressColor="#FF535E"
                             android_custom:textColors="#C1C1C1"
                             android_custom:textIsDisplayable="false"
                             android_custom:roundWidth="4dip"
+
                             android_custom:textSizes="13sp" />
 
                         <TextView
@@ -354,6 +387,7 @@
                     </FrameLayout>
 
                     <ImageView
+                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/icon_bow"
@@ -365,16 +399,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@color/red">
+                   android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_yaoqiu">
 
                     <ImageView
                         android:id="@+id/iv_yaoqiu"
+                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_bow" />
+                        android:src="@drawable/icon_ago" />
 
                     <TextView
+                        android:layout_toRightOf="@+id/iv_yaoqiu"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:text="对同伴的要求" />
 
@@ -383,11 +421,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <com.gome.ecmall.custom.RoundProgressBar
+                        <yiqihi.mobile.com.commonlib.customview.RoundProgressBar
                             android:id="@+id/yaoqiu_progress_bar"
-                            android:layout_width="70dip"
+                            android:layout_width="40dip"
                             android:layout_centerInParent="true"
-                            android:layout_height="70dip"
+                            android:layout_height="40dip"
                             android_custom:roundColor="#EEEEEE"
                             android_custom:roundProgressColor="#FF535E"
                             android_custom:textColors="#C1C1C1"
@@ -408,6 +446,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/icon_bow"
+                        android:layout_centerVertical="true"
                         android:id="@+id/iv_yaoqiu_go"
                         android:layout_alignParentRight="true" />
                 </RelativeLayout>
@@ -418,6 +457,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
+                android:layout_gravity="center_vertical"
                 android:background="@color/white">
 
                 <RelativeLayout
@@ -431,7 +471,9 @@
                         android:id="@+id/tv_savetime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="平摊方式" />
+                        android:text="保留时间"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <EditText
                         android:layout_toRightOf="@+id/tv_savetime"
@@ -439,7 +481,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="AA" />
+                        android:text="AA" android:textSize="14sp"
+                        android:textColor="@color/dark"
+                        android:background="@color/color_00000000"/>
 
                     <ImageView
                         android:layout_alignParentRight="true"
@@ -450,7 +494,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:background="@color/grey" />
 
                 <RelativeLayout
@@ -458,25 +502,30 @@
                     android:orientation="horizontal"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:layout_gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="需我同意后才可参与" />
+                        android:text="需我同意后才可参与"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark"/>
 
                     <CheckBox
+                        android:button="@null"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:id="@+id/cb_agree"
                         android:layout_alignParentRight="true"
-                        android:background="@mipmap/icon_bow" />
+                        android:background="@drawable/bg_selected_state" />
                 </RelativeLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -486,51 +535,51 @@
                         <FrameLayout
                             android:layout_weight="1"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp">
+                            android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android_custom:placeholderImage="@mipmap/ic_launcher" />
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android_custom:placeholderImage="@drawable/bg_takephone" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_bow"
+                                android:src="@drawable/icon_addphone"
                                 android:layout_gravity="bottom|right" />
                         </FrameLayout>
 
                         <FrameLayout
                             android:layout_weight="1"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp">
+                            android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android_custom:placeholderImage="@mipmap/ic_launcher" />
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android_custom:placeholderImage="@drawable/bg_takephone"/>
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_bow"
+                                android:src="@drawable/icon_addphone"
                                 android:layout_gravity="bottom|right" />
                         </FrameLayout>
 
                         <FrameLayout
                             android:layout_weight="1"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp">
+                            android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android_custom:placeholderImage="@mipmap/ic_launcher" />
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android_custom:placeholderImage="@drawable/bg_takephone" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_bow"
+                                android:src="@drawable/icon_addphone"
                                 android:layout_gravity="bottom|right" />
                         </FrameLayout>
                     </LinearLayout>
@@ -541,20 +590,48 @@
                         android:text="请您至少上传一张本人照片" />
 
                     <LinearLayout
+                        android:id="@+id/ll_manager"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/dark_light">
 
-                        <Button
-                            android:layout_weight="1"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="取消" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/ll_publish"
+                            android:gravity="center">
 
-                        <Button
-                            android:layout_weight="1"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="取消"
+                                android:textColor="@color/white"
+                                android:gravity="center" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"
+                            android:background="@color/white" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="确认提交" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/ll_managerpublish"
+                            android:gravity="center">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="确认提交"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 

@@ -150,8 +150,7 @@ public class SearchActivity extends BaseActivity implements TextView.OnEditorAct
             country = item.country;
             city = item.value;
         }
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setAction("searchActivity");
+        Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra(Constants.CONTINENT, continent);
         intent.putExtra(Constants.COUNTRY, country);
         intent.putExtra(Constants.LOCATION, city);

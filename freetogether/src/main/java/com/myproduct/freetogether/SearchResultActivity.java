@@ -1,12 +1,7 @@
 package com.myproduct.freetogether;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,40 +14,49 @@ import yiqihi.mobile.com.commonlib.BaseActivity;
 import yiqihi.mobile.com.commonlib.customview.PagerSlidingTabStrip;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private static final String TAG="MainActivity";
+public class SearchResultActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
     private PagerSlidingTabStrip mSlidingTab;
     private ViewPager mViewPager;
     private ViewPagerAdapter mAdapter;
-    private RelativeLayout rl_search;
+    private String mCountry = "";
+    private String mLocation = "";
     private TextView tv_title;
+    private LinearLayout ll_manager, ll_publish, ll_managerpublish;
+
     @Override
     public int getResourceView() {
-        return R.layout.activity_main;
+        return R.layout.activity_search_result;
     }
 
     @Override
     public void initParams() {
-
+        mCountry = getIntent().getStringExtra(Constants.COUNTRY);
+        mLocation = getIntent().getStringExtra(Constants.LOCATION);
     }
 
     @Override
     protected void initView() {
-        rl_search = findViewByIdHelper(R.id.rl_search);
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this, "", "");
+        ll_manager = findViewByIdHelper(R.id.ll_manager);
+        ll_publish = findViewByIdHelper(R.id.ll_publish);
+        ll_managerpublish = findViewByIdHelper(R.id.ll_managerpublish);
+        ll_manager.setVisibility(View.VISIBLE);
+
+        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), this, mCountry, mLocation);
         mSlidingTab = findViewByIdHelper(R.id.pagerslidingtab);
         mViewPager = findViewByIdHelper(R.id.vp_freetogether);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(5);
         mSlidingTab.setViewPager(mViewPager);
         mSlidingTab.updateTextColor(0);
-        tv_title=findViewByIdHelper(R.id.tv_title);
+        tv_title = findViewByIdHelper(R.id.tv_title);
         tv_title.setText("自由结伴");
     }
 
     @Override
     protected void setListener() {
-        rl_search.setOnClickListener(this);
+        ll_publish.setOnClickListener(this);
+        ll_managerpublish.setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +69,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.rl_search:
                 startActivity(new Intent(this, SearchActivity.class));
+                break;
+            case R.id.ll_publish:
+                startActivity(new Intent(this, PublishGuideActivity.class));
+                break;
+            case R.id.ll_managerpublish:
                 break;
             default:
                 break;
