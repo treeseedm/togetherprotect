@@ -18,6 +18,7 @@ import org.apmem.tools.layouts.FlowLayout;
 import java.util.List;
 
 import yiqihi.mobile.com.commonlib.AdapterBase;
+import yiqihi.mobile.com.commonlib.MobileDeviceUtil;
 
 public class DaigouAdapter extends AdapterBase<Item> {
     private static final String TAG = "GuideAdapter";
@@ -83,7 +84,10 @@ public class DaigouAdapter extends AdapterBase<Item> {
             for (int i = 0; tags != null && i < tags.length; i++) {
                 Button view = (Button) View.inflate(mContext, R.layout.flow_button, null);
                 view.setText(tags[i]);
-
+                FlowLayout.LayoutParams mParams=new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mParams.rightMargin= MobileDeviceUtil.dip2px(mContext, 2);
+                mParams.bottomMargin=MobileDeviceUtil.dip2px(mContext,5);
+                view.setLayoutParams(mParams);
                 vh.btn_add.setBackgroundResource(R.drawable.bg_daigou_add);
                 if (i == 0) {
                     view.setBackgroundResource(R.drawable.bg_daigou);

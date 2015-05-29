@@ -1,7 +1,9 @@
 package com.myproduct.freetogether.adapter;
 
 import android.content.Context;
+import android.media.projection.MediaProjection;
 import android.net.Uri;
+import android.text.style.ParagraphStyle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.cache.disk.DiskStorageCache;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.myapplication.yiqihi.constant.Constants;
 import com.myproduct.freetogether.R;
@@ -20,15 +23,18 @@ import org.apmem.tools.layouts.FlowLayout;
 import java.util.List;
 
 import yiqihi.mobile.com.commonlib.AdapterBase;
+import yiqihi.mobile.com.commonlib.CommonUtility;
+import yiqihi.mobile.com.commonlib.MobileDeviceUtil;
 
 public class CarAdapter extends AdapterBase<Item> {
     private static final String TAG = "GuideAdapter";
     private Context mContext;
-
+    private FlowLayout.LayoutParams mParams;
     public CarAdapter(Context context) {
         this.mContext = context;
+
     }
-    private ViewGroup.LayoutParams mParams;
+
 
     private class ViewHolder {
         TextView tv_publishtime, title, tv_cartype, tv_time, tv_money, tv_des, tv_location, tv_remainday;
@@ -105,9 +111,10 @@ public class CarAdapter extends AdapterBase<Item> {
             for (int i = 0; tags != null && i < tags.length; i++) {
                 Button view = (Button) View.inflate(mContext, R.layout.flow_button, null);
                 view.setText(tags[i]);
-                FlowLayout.LayoutParams params=new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.setMargins(30,30,30,30);
-                view.setLayoutParams(params);
+                mParams=new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mParams.rightMargin=MobileDeviceUtil.dip2px(mContext,2);
+               mParams.bottomMargin=MobileDeviceUtil.dip2px(mContext,5);
+                view.setLayoutParams(mParams);
                 switch (catalog) {
                     case 8:
                         addText="立即拼车";

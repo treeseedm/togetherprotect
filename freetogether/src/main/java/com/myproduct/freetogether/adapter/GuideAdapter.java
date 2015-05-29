@@ -18,6 +18,7 @@ import org.apmem.tools.layouts.FlowLayout;
 import java.net.URI;
 
 import yiqihi.mobile.com.commonlib.AdapterBase;
+import yiqihi.mobile.com.commonlib.MobileDeviceUtil;
 
 public class GuideAdapter extends AdapterBase<Item> {
     private static final String TAG = "GuideAdapter";
@@ -89,7 +90,10 @@ public class GuideAdapter extends AdapterBase<Item> {
             for (int i = 0; tags != null && i < tags.length; i++) {
                 Button view = (Button) View.inflate(mContext, R.layout.flow_button, null);
                 view.setText(tags[i]);
-
+                FlowLayout.LayoutParams mParams=new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mParams.rightMargin= MobileDeviceUtil.dip2px(mContext, 2);
+                mParams.bottomMargin=MobileDeviceUtil.dip2px(mContext,5);
+                view.setLayoutParams(mParams);
                 switch (catalog) {
                     case 7:
                         if (i == 0) {

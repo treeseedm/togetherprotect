@@ -165,8 +165,7 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                fresco:placeholderImage="@mipmap/ic_launcher"
+                android:layout_height="200dp"
                 android:layout_below="@+id/fl_container"
                 android:id="@+id/sdv_car" />
 
