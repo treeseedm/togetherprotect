@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android_custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/ll_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/common_bg">
@@ -9,6 +10,7 @@
     <include layout="@layout/common_header_info" />
 
     <ScrollView
+        android:id="@+id/sv_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -97,11 +99,11 @@
                         android:textSize="14sp"
                         android:textColor="@color/dark"/>
 
-                    <EditText
+                    <TextView
                         android:layout_toRightOf="@+id/tv_datedes"
                         android:id="@+id/et_date"
                         android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textSize="14sp"
@@ -109,6 +111,7 @@
                         android:background = "@color/color_00000000"/>
 
                     <ImageView
+                        android:id="@+id/iv_go_data"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -172,6 +175,7 @@
                         android:textColor="@color/dark" android:background = "@color/color_00000000"/>
 
                     <ImageView
+                        android:id="@+id/iv_go_car"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -279,13 +283,14 @@
                     <EditText
                         android:layout_toRightOf="@+id/tv_pingtan"
                         android:id="@+id/et_pingtan"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="AA" android:textSize="14sp"
                         android:textColor="@color/dark" android:background = "@color/color_00000000"/>
 
                     <ImageView
+                        android:id="@+id/iv_go_pingtan"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -339,6 +344,7 @@
                 android:background="@color/white">
 
                 <RelativeLayout
+                    android:id="@+id/rl_myinfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -396,6 +402,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_yaoqiu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -478,7 +485,7 @@
                     <EditText
                         android:layout_toRightOf="@+id/tv_savetime"
                         android:id="@+id/et_savetime"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="AA" android:textSize="14sp"
@@ -486,6 +493,7 @@
                         android:background="@color/color_00000000"/>
 
                     <ImageView
+                        android:id="@+id/iv_go_savetime"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -513,8 +521,9 @@
                         android:textColor="@color/dark"/>
 
                     <CheckBox
+
                         android:button="@null"
-                        android:layout_width="wrap_content"
+                        android:layout_width="60dp"
                         android:layout_height="40dp"
                         android:id="@+id/cb_agree"
                         android:layout_alignParentRight="true"
@@ -538,11 +547,13 @@
                             android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_image1"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
                                 android_custom:placeholderImage="@drawable/bg_takephone" />
 
                             <ImageView
+                                android:id="@+id/iv_add1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/icon_addphone"
@@ -555,11 +566,13 @@
                             android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_image2"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
                                 android_custom:placeholderImage="@drawable/bg_takephone"/>
 
                             <ImageView
+                                android:id="@+id/iv_add2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/icon_addphone"
@@ -572,11 +585,13 @@
                             android:layout_height="100dp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/sdv_image3"
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
                                 android_custom:placeholderImage="@drawable/bg_takephone" />
 
                             <ImageView
+                                android:id="@+id/iv_add3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/icon_addphone"
@@ -599,6 +614,7 @@
                         android:background="@color/dark_light">
 
                         <LinearLayout
+
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
