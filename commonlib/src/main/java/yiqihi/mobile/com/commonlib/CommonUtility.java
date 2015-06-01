@@ -31,16 +31,21 @@ import android.provider.ContactsContract;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.thunder.wheel.view.NumericWheelAdapter;
+import com.thunder.wheel.view.OnWheelChangedListener;
+import com.thunder.wheel.view.WheelView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -66,6 +71,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -82,30 +89,24 @@ import yiqihi.mobile.com.commonlib.customview.NoResultView;
  * 常用工具类【通用方法】
  */
 public class CommonUtility {
-    private static final String LOGFOLDER="\\yiqihi\\log";
+    private static final String LOGFOLDER = "\\yiqihi\\log";
     private static final String TAG = "CommonUtility";
     private static Thread myStartThread;
 
     /**
      * 获取对话框
-     * 
+     *
      * @param context
-     * @param title
-     *            对话框标题
-     * @param message
-     *            对话框消息
-     * @param leftLabel
-     *            对话框左侧按钮文字
-     * @param leftListener
-     *            对话框左侧按钮监听
-     * @param rightLabel
-     *            对话框右侧按钮文字
-     * @param rightListener
-     *            对话框右侧按钮监听
+     * @param title         对话框标题
+     * @param message       对话框消息
+     * @param leftLabel     对话框左侧按钮文字
+     * @param leftListener  对话框左侧按钮监听
+     * @param rightLabel    对话框右侧按钮文字
+     * @param rightListener 对话框右侧按钮监听
      * @return 对话框
      */
     public static AlertDialog showConfirmDialog(Context context, String title, String message, String leftLabel,
-            OnClickListener leftListener, String rightLabel, OnClickListener rightListener) {
+                                                OnClickListener leftListener, String rightLabel, OnClickListener rightListener) {
         AlertDialog alertDialog = new Builder(context).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -116,7 +117,7 @@ public class CommonUtility {
     }
 
     public static AlertDialog showAlertDialog(Context context, String title, CharSequence message, String btnLabel,
-            OnClickListener btnListener) {
+                                              OnClickListener btnListener) {
         AlertDialog alertDialog = new Builder(context).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -135,7 +136,7 @@ public class CommonUtility {
      * @return
      */
     public static ProgressDialog showProgressDialog(Context context, String message, boolean cancelable,
-            OnDismissListener dismissListener) {
+                                                    OnDismissListener dismissListener) {
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.show();
         progressDialog.setCancelable(cancelable);
@@ -148,12 +149,9 @@ public class CommonUtility {
      * 单选列表对话框
      *
      * @param context
-     * @param title
-     *            对话框标题
-     * @param itemLabels
-     *            列表数组
-     * @param checkedIndex
-     *            默认选择项
+     * @param title         对话框标题
+     * @param itemLabels    列表数组
+     * @param checkedIndex  默认选择项
      * @param checkListener
      * @param leftLabel
      * @param leftListener
@@ -162,8 +160,8 @@ public class CommonUtility {
      * @return
      */
     public static AlertDialog showSingleChioceDialog(Context context, String title, String[] itemLabels,
-            int checkedIndex, OnClickListener checkListener, String leftLabel, OnClickListener leftListener,
-            String rightLabel, OnClickListener rightListener) {
+                                                     int checkedIndex, OnClickListener checkListener, String leftLabel, OnClickListener leftListener,
+                                                     String rightLabel, OnClickListener rightListener) {
         AlertDialog alertDialog = new Builder(context).setTitle(title)
                 .setSingleChoiceItems(itemLabels, checkedIndex, checkListener).create();
         if (leftLabel != null) {
@@ -175,6 +173,7 @@ public class CommonUtility {
         alertDialog.show();
         return alertDialog;
     }
+
     /**
      * 显示进度框
      *
@@ -190,13 +189,11 @@ public class CommonUtility {
     }
 
 
-
     /**
      * 显示提示
      *
      * @param context
-     * @param msg
-     *            提示内容
+     * @param msg     提示内容
      */
     public static void showToast(Context context, String msg) {
         if (TextUtils.isEmpty(msg)) {
@@ -214,10 +211,8 @@ public class CommonUtility {
     /**
      * 拼凑文字颜色html
      *
-     * @param text
-     *            要修饰的文字
-     * @param colorValue
-     *            颜色值
+     * @param text       要修饰的文字
+     * @param colorValue 颜色值
      * @return
      */
     public static String getColorText(String text, String colorValue) {
@@ -232,7 +227,7 @@ public class CommonUtility {
      * @return
      */
     public static String ToDBC(String input) {
-        if(TextUtils.isEmpty(input)){
+        if (TextUtils.isEmpty(input)) {
             return "";
         }
         char[] c = input.toCharArray();
@@ -304,8 +299,7 @@ public class CommonUtility {
     /**
      * 将文件解码为图片
      *
-     * @param filePath
-     *            文件路径
+     * @param filePath 文件路径
      * @param destSize
      * @return
      */
@@ -377,13 +371,12 @@ public class CommonUtility {
     }
 
     // 通过经纬度获取城市
+
     /**
      * 通过经纬度获取城市 google接口
      *
-     * @param lat
-     *            纬度
-     * @param log
-     *            经度
+     * @param lat 纬度
+     * @param log 经度
      */
     public static void reverseGeocode(double lat, double log) {
         HttpRequestBase httpRequest = null;
@@ -432,10 +425,8 @@ public class CommonUtility {
     /**
      * 通过经纬度获取城市--百度接口
      *
-     * @param lat
-     *            纬度
-     * @param log
-     *            经度
+     * @param lat 纬度
+     * @param log 经度
      */
     public static void reverseGeocodeBaidu(double lat, double log) {
         HttpRequestBase httpRequest = null;
@@ -512,6 +503,7 @@ public class CommonUtility {
         }
         return str2;
     }
+
     /**
      * 判断价钱是否为空或者为0
      *
@@ -631,7 +623,7 @@ public class CommonUtility {
      * @param list
      */
     public static void setEmptyViewToListViewSearchAndListener(Context context, ListView list, int icon,
-            String message, final ListViewEmptyListener myCouponListViewIsEmptyListener) {
+                                                               String message, final ListViewEmptyListener myCouponListViewIsEmptyListener) {
         NoResultView emptyView = new NoResultView(context, icon, message);
         ((ViewGroup) list.getParent()).addView(emptyView, new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
@@ -645,7 +637,6 @@ public class CommonUtility {
         });
         list.setEmptyView(emptyView);
     }
-
 
 
     /**
@@ -720,8 +711,7 @@ public class CommonUtility {
     /**
      * 将图片截取为圆角图片
      *
-     * @param bitmap
-     *            原图片片
+     * @param bitmap 原图片片
      * @return 圆角矩形图片
      */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
@@ -896,10 +886,8 @@ public class CommonUtility {
     }
 
     /**
-     *
      * @param context
-     * @param appName
-     *            文件名称，传带后缀名 xxx.apk
+     * @param appName 文件名称，传带后缀名 xxx.apk
      */
     public static boolean installApp(Context context, String appName) {
         // 获取下载目录
@@ -952,8 +940,7 @@ public class CommonUtility {
     /**
      * 判断当前系统是否为 message 系统 【比如判断当前系统是否为小米系统】 demo:isOSFromMessage("xiaomi") -- miui系统
      *
-     * @param message
-     *            系统标识
+     * @param message 系统标识
      * @return
      */
     public static boolean isOSFromMessage(String message) {
@@ -994,10 +981,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 将返回数据为字符串格式的转化为两位小数z金钱
-     * @author biaofeng.hou
      * @param moneyAmount
      * @return
+     * @Description: 将返回数据为字符串格式的转化为两位小数z金钱
+     * @author biaofeng.hou
      * @date 2014-11-24 下午2:17:05
      */
     public static String getMoneyFromInt(int moneyAmount) {
@@ -1023,10 +1010,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 将返回数据为字符串格式的转化为两位小数z金钱
-     * @author biaofeng.hou
      * @param moneyAmount
      * @return
+     * @Description: 将返回数据为字符串格式的转化为两位小数z金钱
+     * @author biaofeng.hou
      * @date 2014-11-24 下午2:17:05
      */
     public static String getMoneyInt(int moneyAmount) {
@@ -1052,10 +1039,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 将返回数据为字符串格式的转化为金钱
-     * @author biaofeng.hou
      * @param moneyAmount
      * @return
+     * @Description: 将返回数据为字符串格式的转化为金钱
+     * @author biaofeng.hou
      * @date 2014-11-24 下午2:17:05
      */
     public static String getMoneyInt(String moneyAmount) {
@@ -1070,10 +1057,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 将返回数据为字符串格式的转化为金钱，若为空则返回空
-     * @author biaofeng.hou
      * @param moneyAmount
      * @return
+     * @Description: 将返回数据为字符串格式的转化为金钱，若为空则返回空
+     * @author biaofeng.hou
      * @date 2014-11-25 上午9:46:17
      */
     public static String getMoneyIntEmpty(String moneyAmount) {
@@ -1091,10 +1078,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 获取联系人电话
-     * @author biaofeng.hou
      * @param cursor
      * @return
+     * @Description: 获取联系人电话
+     * @author biaofeng.hou
      * @date 2014-11-25 下午12:07:45
      */
     public static ArrayList<String> getContactList(Context context, Cursor cursor) {
@@ -1128,10 +1115,10 @@ public class CommonUtility {
     }
 
     /**
-     * @Description: 校验手机号码
-     * @author biaofeng.hou
      * @param num
      * @return
+     * @Description: 校验手机号码
+     * @author biaofeng.hou
      * @date 2014-11-25 下午12:08:15
      */
     public static boolean checkPhone(String num) {
@@ -1148,7 +1135,7 @@ public class CommonUtility {
 
     /**
      * 价格数据是否为0
-     * 
+     *
      * @param money
      * @return
      */
@@ -1159,7 +1146,7 @@ public class CommonUtility {
 
     /**
      * 判断app是否已安装
-     * 
+     *
      * @param context
      * @param packageName
      * @return
@@ -1188,7 +1175,7 @@ public class CommonUtility {
 
     /**
      * 判断服务器返回的boolean字符串是否为true【Y:TRUE--N:FALSE】
-     * 
+     *
      * @param stringBoolean
      * @return
      */
@@ -1202,8 +1189,7 @@ public class CommonUtility {
 
     /**
      * 设置intent跳转参数,注意只保留string类型与Serializable类型
-     * 
-     * 
+     *
      * @param intent
      * @param params
      */
@@ -1234,69 +1220,71 @@ public class CommonUtility {
         Paint paint = shopping_cart_has_prom.getPaint();
         String dot = "          ";
         int firstIndex = 0;
-        if(!TextUtils.isEmpty(format)){
+        if (!TextUtils.isEmpty(format)) {
             for (int i = 0; i < format.length(); i++) {
                 float tempLength = paint.measureText(format, 0, i);
-                if(tempLength > width){
+                if (tempLength > width) {
                     firstIndex = i - 1;
                     break;
                 }
             }
-            if(firstIndex == 0){
+            if (firstIndex == 0) {
                 sb.append(format);
-            }else{
+            } else {
                 sb.append(format.substring(0, firstIndex));
                 String secString = format.substring(firstIndex, format.length());
                 secString = dot + secString;
                 firstIndex = 0;
                 for (int i = 0; i < secString.length(); i++) {
                     float tempLength = paint.measureText(secString, 0, i);
-                    if(tempLength > width){
+                    if (tempLength > width) {
                         firstIndex = i - 1;
                         break;
                     }
                 }
                 sb.append("\n");
-                if(firstIndex == 0){
+                if (firstIndex == 0) {
                     sb.append(secString);
-                }else{
+                } else {
                     sb.append(secString.substring(0, firstIndex));
                     String thString = secString.substring(firstIndex, secString.length());
                     thString = dot + thString;
                     firstIndex = 0;
                     for (int i = 0; i < thString.length(); i++) {
                         float tempLength = paint.measureText(thString, 0, i);
-                        if(tempLength > width){
+                        if (tempLength > width) {
                             firstIndex = i - 1;
                             break;
                         }
                     }
                     sb.append("\n");
-                    if(firstIndex == 0){
+                    if (firstIndex == 0) {
                         sb.append(thString);
-                    }else{
-                        sb.append(thString.substring(0, firstIndex-2)+"...");
+                    } else {
+                        sb.append(thString.substring(0, firstIndex - 2) + "...");
                     }
                 }
             }
             return sb.toString();
-        }else{
+        } else {
             return "";
         }
     }
 
     /**
      * 替换中文字符为英文字符【优化列表加载性能】
+     *
      * @param title
      * @return
      */
-    public static String getText(String title){
+    public static String getText(String title) {
         title = title.replaceAll("（", "(").replaceAll("）", ")").replaceAll("-", "-");
         return title;
     }
 
     /**
      * 获取底部导航栏高度
+     *
      * @return
      */
     public static int getNavigationHeight(Context context) {
@@ -1316,6 +1304,7 @@ public class CommonUtility {
         }
         return result;
     }
+
     public static void showSoft(final EditText editText) {
 
         Timer timer = new Timer();
@@ -1327,193 +1316,150 @@ public class CommonUtility {
             }
         }, 500);
     }
-    public static void writeLog(String content){
+
+    public static void writeLog(String content) {
         File sdDir = null;
         boolean sdCardExist = Environment.getExternalStorageState()
                 .equals(Environment.MEDIA_MOUNTED);   //判断sd卡是否存在
-        if   (sdCardExist)
-        {
+        if (sdCardExist) {
             sdDir = Environment.getExternalStorageDirectory();//获取跟目录
         }
-        sdDir=new File(sdDir.getPath()+LOGFOLDER,"log"+System.currentTimeMillis()+".txt");
-        try{
-            FileOutputStream stream=new FileOutputStream(sdDir);
+        sdDir = new File(sdDir.getPath() + LOGFOLDER, "log" + System.currentTimeMillis() + ".txt");
+        try {
+            FileOutputStream stream = new FileOutputStream(sdDir);
             stream.write(content.getBytes());
-            stream.flush();;
+            stream.flush();
+            ;
             stream.close();
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
 
     }
-//    private void showDateTimePicker(boolean showTimer) {
-//        if (showTimer) {
-//            if (!isTimer) {
-//                Calendar calendar = Calendar.getInstance();
-//                final int year = calendar.get(Calendar.YEAR);
-//                final int month = calendar.get(Calendar.MONTH);
-//                final int day = calendar.get(Calendar.DATE);
-//                final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//                final int minute = calendar.get(Calendar.MINUTE);
-//                // 添加大小月月份并将其转换为list,方便之后的判断
-//                String[] months_big = { "1", "3", "5", "7", "8", "10", "12" };
-//                String[] months_little = { "4", "6", "9", "11" };
-//
-//                final List<String> list_big = Arrays.asList(months_big);
-//                final List<String> list_little = Arrays.asList(months_little);
-//                // 找到dialog的布局文件
-//                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View view = inflater.inflate(R.layout.timer_choose_include, null);
-//
-//                // 年
-//                final WheelView wv_year = (WheelView) view.findViewById(R.id.year);
-//                wv_year.setAdapter(new NumericWheelAdapter(year, 2100));// 设置"年"的显示数据
-//                wv_year.setCyclic(true);// 可循环滚动
-//                wv_year.setLabel("年");// 添加文字
-//                wv_year.setCurrentItem(0);// 初始化时显示的数据
-//                // 月
-//                final WheelView wv_month = (WheelView) view.findViewById(R.id.month);
-//                wv_month.setAdapter(new NumericWheelAdapter(1, 12));
-//                wv_month.setCyclic(true);
-//                wv_month.setLabel("月");
-//                wv_month.setCurrentItem(month);
-//
-//                // 日
-//                final WheelView wv_day = (WheelView) view.findViewById(R.id.day);
-//                wv_day.setCyclic(true);
-//                // 判断大小月及是否闰年,用来确定"日"的数据
-//                if (list_big.contains(String.valueOf(month + 1))) {
-//                    wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-//                } else if (list_little.contains(String.valueOf(month + 1))) {
-//                    wv_day.setAdapter(new NumericWheelAdapter(1, 30));
-//                } else {
-//                    // 闰年
-//                    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-//                        wv_day.setAdapter(new NumericWheelAdapter(1, 29));
-//                    else
-//                        wv_day.setAdapter(new NumericWheelAdapter(1, 28));
-//                }
-//                wv_day.setLabel("日");
-//                wv_day.setCurrentItem(day - 1);
-//
-//                // 时
-//                final WheelView wv_hours = (WheelView) view.findViewById(R.id.hour);
-//                wv_hours.setAdapter(new NumericWheelAdapter(0, 23));
-//                wv_hours.setCyclic(true);
-//                wv_hours.setLabel("时");
-//                wv_hours.setCurrentItem(hour);
-//
-//                // 分
-//                final WheelView wv_mins = (WheelView) view.findViewById(R.id.mins);
-//                wv_mins.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
-//                wv_mins.setCyclic(true);
-//                wv_mins.setLabel("分");
-//                wv_mins.setCurrentItem(minute);
-//
-//                // 添加"年"监听
-//                OnWheelChangedListener wheelListener_year = new OnWheelChangedListener() {
-//                    public void onChanged(WheelView wheel, int oldValue, int newValue) {
-//                        int year_num = newValue + 2013;
-//                        // 判断大小月及是否闰年,用来确定"日"的数据
-//                        if (list_big.contains(String.valueOf(wv_month.getCurrentItem() + 1))) {
-//                            wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-//                        } else if (list_little.contains(String.valueOf(wv_month.getCurrentItem() + 1))) {
-//                            wv_day.setAdapter(new NumericWheelAdapter(1, 30));
-//                        } else {
-//                            if ((year_num % 4 == 0 && year_num % 100 != 0) || year_num % 400 == 0)
-//                                wv_day.setAdapter(new NumericWheelAdapter(1, 29));
-//                            else
-//                                wv_day.setAdapter(new NumericWheelAdapter(1, 28));
-//                        }
-//                    }
-//                };
-//                // 添加"月"监听
-//                OnWheelChangedListener wheelListener_month = new OnWheelChangedListener() {
-//                    public void onChanged(WheelView wheel, int oldValue, int newValue) {
-//                        int month_num = newValue + 1;
-//                        // 判断大小月及是否闰年,用来确定"日"的数据
-//                        if (list_big.contains(String.valueOf(month_num))) {
-//                            wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-//                        } else if (list_little.contains(String.valueOf(month_num))) {
-//                            wv_day.setAdapter(new NumericWheelAdapter(1, 30));
-//                        } else {
-//                            if (((wv_year.getCurrentItem() + 2013) % 4 == 0 && (wv_year.getCurrentItem() + 2013) % 100 != 0)
-//                                    || (wv_year.getCurrentItem() + 2013) % 400 == 0)
-//                                wv_day.setAdapter(new NumericWheelAdapter(1, 29));
-//                            else
-//                                wv_day.setAdapter(new NumericWheelAdapter(1, 28));
-//                        }
-//                    }
-//                };
-//                wv_year.addChangingListener(wheelListener_year);
-//                wv_month.addChangingListener(wheelListener_month);
-//
-//                // 根据屏幕密度来指定选择器字体的大小
-//                int textSize = 0;
-//                DisplayMetrics dm = this.getResources().getDisplayMetrics();
-//                textSize = (int) (12 * dm.density);
-//                // textSize = 12;
-//                //
-//                wv_day.TEXT_SIZE = textSize;
-//                wv_hours.TEXT_SIZE = textSize;
-//                wv_mins.TEXT_SIZE = textSize;
-//                wv_month.TEXT_SIZE = textSize;
-//                wv_year.TEXT_SIZE = textSize;
-//
-//                Button btn_sure = (Button) view.findViewById(R.id.btn_datetime_sure);
-//                Button btn_cancel = (Button) view.findViewById(R.id.btn_datetime_cancel);
-//                // 确定
-//                btn_sure.setOnClickListener(new OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View arg0) {
-//                        String dateStr = (wv_month.getCurrentItem() + 1) + "/" + (wv_day.getCurrentItem() + 1) + "/"
-//                                + (year+wv_year.getCurrentItem()) + " "+ wv_hours.getCurrentItem() + ":"
-//                                + wv_mins.getCurrentItem();
-//                        Date sendTimeDate = TimeUtils.convertStr2Date(dateStr, TimeUtils.DATE_TIME_FORMAT);
-//                        sendTime = sendTimeDate.getTime();
-//                        isTimer = true;
-//                        String message = String.format(getString(R.string.timer_success_tip),
-//                                TimeUtils.toString(sendTimeDate, TimeUtils.DATE_TIME_C_FORMAT));
-//                        Utils.showToast(context, message);
-//                        TypedArray typedArray = context
-//                                .obtainStyledAttributes(new int[] { R.attr.btn_insert_timer_res });
-//                        timer_iv.setImageResource(typedArray.getResourceId(0, 0));
-//                        bottom_contain_lt.setVisibility(View.GONE);// 隐藏
-//                        timer_contain_lt.setVisibility(View.GONE);
-//
-//                    }
-//                });
-//                // 取消
-//                btn_cancel.setOnClickListener(new OnClickListener() {
-//                    @Override
-//                    public void onClick(View arg0) {
-//                        // 关闭 如果已经设置 那么取消
-//                        if (isTimer) {
-//                            isTimer = false;
-//                            Utils.showToast(context, R.string.timer_cancel);
-//                        }
-//                        TypedArray typedArray = context.obtainStyledAttributes(new int[] { R.attr.btn_insert_timer });
-//                        timer_iv.setImageResource(typedArray.getResourceId(0, 0));
-//                        bottom_contain_lt.setVisibility(View.GONE);
-//                        timer_contain_lt.setVisibility(View.GONE);
-//
-//                    }
-//                });
-//                bottom_contain_lt.setVisibility(View.VISIBLE);
-//                hiddenBottomView(bottom_contain_lt);
-//                timer_contain_lt.setVisibility(View.VISIBLE);
-//                timer_contain_lt.removeAllViews();
-//                timer_contain_lt.addView(view);
-//            } else {
-//                bottom_contain_lt.setVisibility(View.VISIBLE);
-//                hiddenBottomView(bottom_contain_lt);
-//                timer_contain_lt.setVisibility(View.VISIBLE);
-//            }
-//
-//        } else {
-//            bottom_contain_lt.setVisibility(View.GONE);
-//            timer_contain_lt.setVisibility(View.GONE);
-//        }
-//    }
+
+    public static View initDateTimePicker(final Context context, final DataSelectListener listener) {
+         View view = null;
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DATE);
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar.get(Calendar.MINUTE);
+        // 添加大小月月份并将其转换为list,方便之后的判断
+        String[] months_big = {"1", "3", "5", "7", "8", "10", "12"};
+        String[] months_little = {"4", "6", "9", "11"};
+
+        final List<String> list_big = Arrays.asList(months_big);
+        final List<String> list_little = Arrays.asList(months_little);
+        // 找到dialog的布局文件
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+
+        view = inflater.inflate(R.layout.layout_popu_date, null);
+
+        // 年
+        final WheelView wv_year = (WheelView) view.findViewById(R.id.year);
+        wv_year.setViewAdapter(new NumericWheelAdapter(context, year, 2100));// 设置"年"的显示数据
+        wv_year.setCyclic(true);// 可循环滚动
+//            wv_year.setLabel("年");// 添加文字
+        wv_year.setCurrentItem(0);// 初始化时显示的数据
+        // 月
+        final WheelView wv_month = (WheelView) view.findViewById(R.id.month);
+        wv_month.setViewAdapter(new NumericWheelAdapter(context, 1, 12));
+        wv_month.setCyclic(true);
+//            wv_month.setLabel("月");
+        wv_month.setCurrentItem(month);
+
+        // 日
+        final WheelView wv_day = (WheelView) view.findViewById(R.id.day);
+        wv_day.setCyclic(true);
+        // 判断大小月及是否闰年,用来确定"日"的数据
+        if (list_big.contains(String.valueOf(month + 1))) {
+            wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 31));
+        } else if (list_little.contains(String.valueOf(month + 1))) {
+            wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 30));
+        } else {
+            // 闰年
+            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+                wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 29));
+            else
+                wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 28));
+        }
+//            wv_day.setLabel("日");
+        wv_day.setCurrentItem(day - 1);
+
+//            // 时
+//            final WheelView wv_hours = (WheelView) view.findViewById(R.id.hour);
+//            wv_hours.setAdapter(new NumericWheelAdapter(0, 23));
+//            wv_hours.setCyclic(true);
+//            wv_hours.setLabel("时");
+//            wv_hours.setCurrentItem(hour);
+
+        // 分
+//            final WheelView wv_mins = (WheelView) view.findViewById(R.id.mins);
+//            wv_mins.setAdapter(new NumericWheelAdapter(0, 59, "%02d"));
+//            wv_mins.setCyclic(true);
+//            wv_mins.setLabel("分");
+//            wv_mins.setCurrentItem(minute);
+
+        // 添加"年"监听
+        OnWheelChangedListener wheelListener_year = new OnWheelChangedListener() {
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                int year_num = newValue + 2013;
+                // 判断大小月及是否闰年,用来确定"日"的数据
+                if (list_big.contains(String.valueOf(wv_month.getCurrentItem() + 1))) {
+                    wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 31));
+                } else if (list_little.contains(String.valueOf(wv_month.getCurrentItem() + 1))) {
+                    wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 30));
+                } else {
+                    if ((year_num % 4 == 0 && year_num % 100 != 0) || year_num % 400 == 0)
+                        wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 29));
+                    else
+                        wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 28));
+                }
+            }
+        };
+        // 添加"月"监听
+        OnWheelChangedListener wheelListener_month = new OnWheelChangedListener() {
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                int month_num = newValue + 1;
+                // 判断大小月及是否闰年,用来确定"日"的数据
+                if (list_big.contains(String.valueOf(month_num))) {
+                    wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 31));
+                } else if (list_little.contains(String.valueOf(month_num))) {
+                    wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 30));
+                } else {
+                    if (((wv_year.getCurrentItem() + 2013) % 4 == 0 && (wv_year.getCurrentItem() + 2013) % 100 != 0)
+                            || (wv_year.getCurrentItem() + 2013) % 400 == 0)
+                        wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 29));
+                    else
+                        wv_day.setViewAdapter(new NumericWheelAdapter(context, 1, 28));
+                }
+            }
+        };
+        wv_year.addChangingListener(wheelListener_year);
+        wv_month.addChangingListener(wheelListener_month);
+
+        Button btn_sure = (Button) view.findViewById(R.id.btn_datetime_sure);
+        Button btn_cancel = (Button) view.findViewById(R.id.btn_datetime_cancel);
+        // 确定
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+//                    String dateStr = (wv_month.getCurrentItem() + 1) + "-" + (wv_day.getCurrentItem() + 1) + "-"
+//                            + (year + wv_year.getCurrentItem());
+                listener.onOKClick("" + (year + wv_year.getCurrentItem()), "" + (wv_month.getCurrentItem() + 1), "" + (wv_day.getCurrentItem() + 1));
+
+            }
+        });
+        // 取消
+        final View finalView = view;
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+              listener.onCancleClick();
+            }
+        });
+        return view;
+    }
 }
