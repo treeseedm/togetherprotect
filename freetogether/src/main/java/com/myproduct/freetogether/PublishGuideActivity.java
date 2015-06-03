@@ -399,13 +399,13 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onResponse(Msg.DataType type, String action, String key, Object data) {
         String result = data.toString();
-        System.out.println("response:" + result);
+        Log.e(TAG, "response:" + result);
         if (TextUtils.isEmpty(result)) {
-            CommonUtility.showToast(this, "获取数据失败!");
+            CommonUtility.showToast(this, "发布失败!");
         } else {
             BaseResponse mResponse = JSON.parseObject(result, BaseResponse.class);
             if (!mResponse.xeach) {
-                CommonUtility.showToast(this, "获取数据失败!");
+                CommonUtility.showToast(this, "发布失败!");
             } else {
                 CommonUtility.showToast(this, "发布成功!");
                 finish();

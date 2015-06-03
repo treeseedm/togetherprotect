@@ -27,50 +27,67 @@ public class SocketDemo {
 
 			@Override
 			public void onResponse(DataType type, String action, String key,
-					Object data) {
+								   Object data) {
 				switch (type) {
-				case json:
-				case string:
-					BasicDBObject result = (BasicDBObject) data;
-					System.out.println(data.toString());
+					case json:
+					case string:
+						BasicDBObject result = (BasicDBObject) data;
+						System.out.println(data.toString());
 
-					if (action.equalsIgnoreCase("searchTrip")) {
-						BasicDBObject oResponse = (BasicDBObject) JSON
-								.parse(data.toString());
+						if (action.equalsIgnoreCase("connect")
+								&& result.getBoolean("xeach", false) == true) {
+							client.login("3@yiqihi.com", "abc123");
+						} else if (action.equalsIgnoreCase("login")
+								&& result.getBoolean("xeach", false) == true) {
+							client.auth = true;
+							client.privateKey = result.getString("key");
+							client.userId = result.getLong("id");
+							client.userName = result.getString("name");
+							client.initAliyun(result.getString("aliyun-hostId"),
+									result.getString("aliyun-key"),
+									result.getString("aliyun-secret"),
+									result.getString("imageDomain"));
+						}
 
-						BasicDBList oItems = (BasicDBList) oResponse
-								.get("items");
-						for (int i = 0; i < oItems.size(); i++) {
-							BasicDBObject oItem = (BasicDBObject) oItems.get(i);
-							System.out.println(oItem.getString("title"));
-							BasicDBList photos = (BasicDBList) JSON.parse(oItem
-									.getString("photos"));
-							for (int t = 0; t < photos.size(); t++) {
-								BasicDBObject photo = (BasicDBObject) photos
-										.get(i);
-								System.out.println(photo.getString("shot"));
+
+						if (action.equalsIgnoreCase("searchTrip")) {
+							BasicDBObject oResponse = (BasicDBObject) JSON
+									.parse(data.toString());
+
+							BasicDBList oItems = (BasicDBList) oResponse
+									.get("items");
+							for (int i = 0; i < oItems.size(); i++) {
+								BasicDBObject oItem = (BasicDBObject) oItems.get(i);
+								System.out.println(oItem.getString("title"));
+								BasicDBList photos = (BasicDBList) JSON.parse(oItem
+										.getString("photos"));
+								for (int t = 0; t < photos.size(); t++) {
+									BasicDBObject photo = (BasicDBObject) photos
+											.get(i);
+									System.out.println(photo.getString("shot"));
+								}
 							}
 						}
-					}
-					break;
-				case bytes:
-					byte[] bytes = (byte[]) data;
-					break;
-				case error:
-					System.out.println(data);
-					break;
+						break;
+					case bytes:
+						byte[] bytes = (byte[]) data;
+						break;
+					case error:
+						System.out.println(data);
+						break;
 				}
 			}
 
 		};
 		client.bind(event);
+		client.connect();
 		readSearchHot(client);
 		findLocation(client, "fa");
 		searchTrip(client, 4);
 	}
 
 	public static ChannelFuture syncDict(Client client, String name,
-			long timestamp) {
+										 long timestamp) {
 		BasicDBObject oMsg = new BasicDBObject();
 		oMsg.append("action", "syncDict");
 		oMsg.append("name", name);
@@ -79,7 +96,7 @@ public class SocketDemo {
 	}
 
 	public static void syncView(Client client, String type, String catalog,
-			long timestamp) {
+								long timestamp) {
 		BasicDBObject oReq = client.newQuery("mobile", 1);
 		BasicDBList items = new BasicDBList();
 		oReq.append("items", items);
@@ -202,55 +219,55 @@ public class SocketDemo {
 	public static void searchTrip(Client client, int mode) {
 		BasicDBObject oReq = client.newQuery("mobile", 8);
 		switch (mode) {
-		case 0:
-			oReq.append("country", "法国");
-			// oReq.append("location", "巴黎");
-			break;
-		// 按category导游
-		case 1:
+			case 0:
+				oReq.append("country", "法国");
+				// oReq.append("location", "巴黎");
+				break;
+			// 按category导游
+			case 1:
 			/* 3vai 导游 36mN 租车 3jzN 巴黎 */
-			oReq.append("country", "法国");
-			oReq.append("location", "巴黎");
-			oReq.append("category", "3vai");
-			break;
-		// 语言过滤,72zF为普通话
-		case 2:
-			oReq.append("country", "法国");
-			oReq.append("location", "巴黎");
-			oReq.append("category", "3vai");
-			oReq.append("language", "72zF-7fy7");
-			break;
-		// 服务标签过滤,4VY包含车的停车费
-		case 3:
-			oReq.append("country", "法国");
-			oReq.append("location", "巴黎");
-			oReq.append("category", "3jzN");
-			oReq.append("serviceTag", "4VY");
-			break;
-		// 排序
-		case 4:
-			BasicDBObject sort = new BasicDBObject();
-			sort.append("field", 2);// 1:默认排序，2:价格 3:更新日期
-			sort.append("mode", 1);// 0:升序1:降序
-			oReq.append("country", "韩国");
-			oReq.append("location", "");
-			oReq.append("sort", sort);
-			break;
-		// 排序
-		case 6:
-			sort = new BasicDBObject();
-			sort.append("field", 2);// 1:默认排序，2:价格 3:更新日期
-			sort.append("mode", 0);// 0:升序1:降序
-			oReq.append("country", "奥地利");
-			// oReq.append("location", "巴黎");
-			oReq.append("sort", sort);
-			break;
-		// 价格标签 ，停车费
-		case 5:
-			oReq.append("country", "法国");
-			oReq.append("location", "巴黎");
-			oReq.append("priceTag", "56E");
-			break;
+				oReq.append("country", "法国");
+				oReq.append("location", "巴黎");
+				oReq.append("category", "3vai");
+				break;
+			// 语言过滤,72zF为普通话
+			case 2:
+				oReq.append("country", "法国");
+				oReq.append("location", "巴黎");
+				oReq.append("category", "3vai");
+				oReq.append("language", "72zF-7fy7");
+				break;
+			// 服务标签过滤,4VY包含车的停车费
+			case 3:
+				oReq.append("country", "法国");
+				oReq.append("location", "巴黎");
+				oReq.append("category", "3jzN");
+				oReq.append("serviceTag", "4VY");
+				break;
+			// 排序
+			case 4:
+				BasicDBObject sort = new BasicDBObject();
+				sort.append("field", 2);// 1:默认排序，2:价格 3:更新日期
+				sort.append("mode", 1);// 0:升序1:降序
+				oReq.append("country", "韩国");
+				oReq.append("location", "");
+				oReq.append("sort", sort);
+				break;
+			// 排序
+			case 6:
+				sort = new BasicDBObject();
+				sort.append("field", 2);// 1:默认排序，2:价格 3:更新日期
+				sort.append("mode", 0);// 0:升序1:降序
+				oReq.append("country", "奥地利");
+				// oReq.append("location", "巴黎");
+				oReq.append("sort", sort);
+				break;
+			// 价格标签 ，停车费
+			case 5:
+				oReq.append("country", "法国");
+				oReq.append("location", "巴黎");
+				oReq.append("priceTag", "56E");
+				break;
 		}
 		client.postUrl("searchTrip", "/module", oReq);
 	}

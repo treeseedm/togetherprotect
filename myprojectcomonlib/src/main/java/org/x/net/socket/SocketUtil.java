@@ -291,5 +291,12 @@ public class SocketUtil {
 		}
 
 	}
+	public static String shortFileName(String fileName) {
+		int index = fileName.lastIndexOf("/");
+		if (index > 0) {
+			fileName = fileName.substring(index + 1, fileName.length());
+		}
+		return fileName;
+	}
 
 }

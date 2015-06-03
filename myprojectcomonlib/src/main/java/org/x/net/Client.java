@@ -1,21 +1,15 @@
 package org.x.net;
 
-import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetSocketAddress;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import android.annotation.SuppressLint;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.util.JSON;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,15 +28,35 @@ import org.x.net.Msg.DataType;
 import org.x.net.socket.SocketInitializer;
 import org.x.net.socket.SocketMsg;
 import org.x.net.socket.SocketUtil;
-import android.annotation.SuppressLint;
-import android.util.Log;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.util.JSON;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
+
+
+import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.OSSServiceProvider;
+import com.alibaba.sdk.android.oss.model.AccessControlList;
+import com.alibaba.sdk.android.oss.model.ClientConfiguration;
+import com.alibaba.sdk.android.oss.model.TokenGenerator;
+import com.alibaba.sdk.android.oss.storage.OSSBucket;
+import com.alibaba.sdk.android.oss.storage.OSSData;
+import com.alibaba.sdk.android.oss.util.OSSToolKit;
+
 
 public class Client {
 	protected Bootstrap bootstrap = null;
@@ -70,7 +84,16 @@ public class Client {
 	public boolean auth = false;
 	public String cookieId = null;
 	public MsgEvent event = null;
+	protected ClientConfiguration cc = null;
+	protected OSSServiceProvider ossService = null;
+	public String imageDomain = null;
+	public static enum ContentType {
+		privateimage,privatevoice,privatevideo,image, video, json, xml, html, text, js
+	}
 
+	public static enum ResponseContentType {
+		json, string,bytes
+	}
 	public Client(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
@@ -473,11 +496,38 @@ public class Client {
 		view.loadUrl(url);
 	}
 
-	public void postUrl(final String action, String url, BasicDBObject oReq) {
-		this.postUrl(action, url, oReq.toString());
+	protected Object parseResponse(HttpResponse response,
+								   ResponseContentType contentType) throws IllegalStateException,
+			IOException {
+		HttpEntity respEntity = response.getEntity();
+		byte[] bytes = EntityUtils.toByteArray(respEntity);
+		respEntity.consumeContent();
+		switch (contentType) {
+			case bytes:
+				return bytes;
+			case json:
+				String content = SocketUtil.toString(bytes);
+				BasicDBObject oResult = (BasicDBObject) JSON.parse(content);
+				if (oResult.containsField("data")) {
+					content = oResult.getString("data");
+					content = SocketUtil.easyDecrypt(auth ? privateKey : publicKey,
+							content);
+					return (BasicDBObject) JSON.parse(content);
+				}
+				return oResult;
+			default:
+				return SocketUtil.toString(bytes);
+		}
 	}
 
-	public void postUrl(final String action, final String url, String content) {
+
+	public BasicDBObject postUrl(final String action, String url,
+								 BasicDBObject oReq) {
+		return this.postUrl(action, url, oReq.toString());
+	}
+
+	public BasicDBObject postUrl(final String action, final String url,
+								 String content) {
 		final HttpClient httpClient = new DefaultHttpClient();
 		final Client self = this;
 		httpClient.getParams().setParameter("http.protocol.cookie-policy",
@@ -494,42 +544,17 @@ public class Client {
 			httpPost.addHeader("User-Agent", UserAgent);
 			StringEntity entity = new StringEntity(content, "utf-8");
 			httpPost.setEntity(entity);
-			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-
-				@Override
-				public String handleResponse(HttpResponse response)
-						throws ClientProtocolException, IOException {
-					HttpEntity entity = response.getEntity();
-					InputStream stream = entity.getContent();
-					byte[] bytes = new byte[1024];
-					int size = 0;
-					ByteBuf buf = Unpooled.buffer();
-					while ((size = stream.read(bytes)) > 0) {
-						buf.writeBytes(bytes, 0, size);
-					}
-					stream.close();
-					String content = SocketUtil.toString(buf.array());
-					BasicDBObject oResult = (BasicDBObject) JSON.parse(content);
-					if (oResult.containsField("data")) {
-						content = oResult.getString("data");
-						content = SocketUtil.easyDecrypt(
-								self.auth ? self.privateKey : self.publicKey,
-								content);
-						oResult = (BasicDBObject) JSON.parse(content);
-					}
-					if (oResult == null)
-						return content;
-					self.event
-							.onResponse(DataType.string, action, url, oResult);
-					httpClient.getConnectionManager().shutdown();
-					return content;
-				}
-			};
-			httpClient.execute(httpPost, responseHandler);
+			HttpResponse response = httpClient.execute(httpPost);
+			BasicDBObject oResult = (BasicDBObject) parseResponse(response,
+					ResponseContentType.json);
+			self.event.onResponse(DataType.string, action, url, oResult);
+			return oResult;
 		} catch (Exception e) {
-            e.printStackTrace();
 			this.event.onResponse(DataType.error, "post", url,
 					e.getLocalizedMessage());
+			return null;
+		} finally {
+			httpClient.getConnectionManager().shutdown();
 		}
 	}
 
@@ -559,7 +584,7 @@ public class Client {
 						buf.writeBytes(bytes, 0, size);
 					}
 					stream.close();
-					self.event.onResponse(Msg.DataType.bytes, action, url,
+					self.event.onResponse(DataType.bytes, action, url,
 							buf.array());
 					httpClient.getConnectionManager().shutdown();
 					return bytes;
@@ -601,6 +626,139 @@ public class Client {
 		} catch (Exception e) {
 			this.event.onResponse(DataType.string, action, url,
 					e.getLocalizedMessage());
+		}
+	}
+
+
+	public void initAliyun(String hostId, final String accessKey,
+						   final String screctKey, String imageDomain) {
+		this.imageDomain = imageDomain;
+		OSSClient.setGlobalDefaultHostId(hostId);
+		OSSClient.setGlobalDefaultTokenGenerator(new TokenGenerator() {
+			@Override
+			public String generateToken(String httpMethod, String md5,
+										String type, String date, String ossHeaders, String resource) {
+				String content = httpMethod + "\n" + md5 + "\n" + type + "\n"
+						+ date + "\n" + ossHeaders + resource;
+				return OSSToolKit.generateToken(accessKey, screctKey, content);
+			}
+		});
+		cc = new ClientConfiguration();
+		ossService = OSSServiceProvider.getService();
+		ossService.setClientConfiguration(cc);
+	}
+
+	public BasicDBList uploadPictures(String[] fileNames, Object[] fileBytes) {
+		BasicDBList files = new BasicDBList();
+		for (int i = 0; i < fileNames.length; i++) {
+			String fileName = SocketUtil.shortFileName(fileNames[i]);
+			BasicDBObject oItem = upload(ContentType.image, "", fileName, "",
+					(byte[]) fileBytes[i]);
+			if (oItem == null)
+				continue;
+			files.add(oItem);
+		}
+		return files;
+	}
+
+	public BasicDBObject uploadPicture(String fileTag, String fileName,
+									   String title, byte[] content) {
+		fileName = SocketUtil.shortFileName(fileName);
+		return upload(ContentType.image, fileTag, fileName, title, content);
+	}
+
+
+	public BasicDBObject upload(final ContentType contentType, String fileTag,
+								String fileName, String title, byte[] content) {
+		String fileType = null;
+		String fileExt = null;
+		int index = fileName.lastIndexOf(".");
+		if (index > 0) {
+			fileExt = fileName.substring(index + 1, fileName.length());
+			fileName = fileName.substring(0, index);
+		}
+		OSSBucket bucket = ossService.getOssBucket("yiqihi-"
+				+ contentType.name());
+		switch (contentType) {
+			case image:
+			case privateimage:
+				fileExt = StringUtils.isEmpty(fileExt) ? "jpg" : fileExt;
+				fileType = "image/" + fileExt;
+				break;
+			case privatevoice:
+				fileExt = StringUtils.isEmpty(fileExt) ? "amr" : fileExt;
+				fileType = "voice/" + fileExt;
+				break;
+			case video:
+			case privatevideo:
+				fileExt = StringUtils.isEmpty(fileExt) ? "mp4" : fileExt;
+				fileType = "video/" + fileExt;
+				break;
+			case json:
+				fileExt = StringUtils.isEmpty(fileExt) ? "json" : fileExt;
+				fileType = "application/json";
+				break;
+			case xml:
+				fileExt = StringUtils.isEmpty(fileExt) ? "xml" : fileExt;
+				fileType = "text/xml";
+				break;
+			case html:
+				fileExt = StringUtils.isEmpty(fileExt) ? "htm" : fileExt;
+				fileType = "text/html";
+				break;
+			case text:
+				fileExt = StringUtils.isEmpty(fileExt) ? "text" : fileExt;
+				fileType = "text/plain";
+				break;
+			case js:
+				fileExt = StringUtils.isEmpty(fileExt) ? "js" : fileExt;
+				fileType = "text/javascript";
+				break;
+		}
+		fileName = fileTag + "@" + this.userId + "@" + fileName + "." + fileExt;
+		OSSData data = ossService.getOssData(bucket, fileName);
+		data.setData(content, fileType);
+
+		final BasicDBObject oReq = new BasicDBObject();
+		final MsgEvent msgEvent = this.event;
+		try {
+			data.upload();
+			oReq.append("moduleName", "mobile");
+			oReq.append("funcIndex", 318);
+			oReq.append("fileName", fileName);
+			oReq.append("datacenter", "aliyun");
+			oReq.append("contentType", contentType.ordinal());
+			return postUrl("upload", "/module", oReq);
+		} catch (Exception e) {
+			oReq.append("xeach", false).append("name", fileName)
+					.append("message", e.getMessage());
+			msgEvent.onResponse(DataType.string, "upload", fileName, oReq);
+		}
+		return null;
+	}
+
+	public byte[] download(final ContentType contentType, String fileName) {
+		OSSBucket bucket = ossService.getOssBucket("yiqihi-"
+				+ contentType.name());
+		switch (contentType) {
+			case privateimage:
+			case privatevoice:
+			case privatevideo:
+				bucket.setBucketACL(AccessControlList.PRIVATE);
+				break;
+			default:
+				bucket.setBucketACL(AccessControlList.PUBLIC_READ);
+				break;
+		}
+		int index = fileName.lastIndexOf("/");
+		if (fileName.length() > 0) {
+			fileName = fileName.substring(index + 1, fileName.length());
+		}
+		try {
+			OSSData data = ossService.getOssData(bucket, fileName);
+			return data.get();
+		} catch (Exception e) {
+			return null;
 		}
 	}
 
