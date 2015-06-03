@@ -3,6 +3,7 @@
     xmlns:android_custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/ll_parent"
     android:layout_height="match_parent"
     android:background="@drawable/common_bg">
 
@@ -26,6 +27,7 @@
 
                 <RelativeLayout
                     android:layout_weight="1"
+                    android:id="@+id/rl_sex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -38,6 +40,7 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_go_sex"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -47,11 +50,12 @@
 
                 <RelativeLayout
                     android:layout_weight="1"
+                    android:id="@+id/rl_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_birthdayText"
+                        android:id="@+id/tv_age"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,6 +63,7 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_go_age"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -81,11 +86,12 @@
 
                 <RelativeLayout
                     android:layout_weight="1"
+                    android:id="@+id/rl_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_heighttext"
+                        android:id="@+id/tv_height"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,6 +99,7 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_go_height"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -103,17 +110,19 @@
                 <RelativeLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
+                    android:id="@+id/rl_lang"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_xuexingtext"
+                        android:id="@+id/tv_lang"
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="血型" />
+                        android:text="语言" />
 
 
                     <ImageView
+                        android:id="@+id/iv_go_lang"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
@@ -140,8 +149,11 @@
                     android:text="职业" />
 
                 <yiqihi.mobile.com.commonlib.customview.DisScrollGridView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:id="@+id/gv_job"
+                     android:horizontalSpacing="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numColumns="4"/>
             </LinearLayout>
 
             <View
@@ -176,6 +188,7 @@
                     android:minLines="3"
                     android:layout_below="@+id/iv_edit"
                     android:hint="请输入信息..."
+                    android:background="@color/color_00000000"
                     android:layout_alignLeft="@+id/tv_destext" />
             </RelativeLayout>
 
@@ -184,8 +197,10 @@
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
                <Button
+                   android:id="@+id/btn_ok"
+                   android:background="@color/dark_light"
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
+                   android:layout_height="40dp"
                    android:text="确认保存"/>
             </LinearLayout>
         </LinearLayout>

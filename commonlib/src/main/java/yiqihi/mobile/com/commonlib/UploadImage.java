@@ -27,7 +27,7 @@ public class UploadImage {
             uploadFile(bitmapRound,context);
         }
     }
-    public void uploadFile(final Bitmap bitmap,Context context) {
+    public static void uploadFile(final Bitmap bitmap,Context context) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();

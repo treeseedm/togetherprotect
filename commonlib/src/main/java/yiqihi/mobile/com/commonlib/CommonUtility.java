@@ -45,6 +45,7 @@ import android.widget.Toast;
 
 import com.thunder.wheel.view.NumericWheelAdapter;
 import com.thunder.wheel.view.OnWheelChangedListener;
+import com.thunder.wheel.view.TextWheelAdapter;
 import com.thunder.wheel.view.WheelView;
 
 import org.apache.http.HttpEntity;
@@ -1337,8 +1338,8 @@ public class CommonUtility {
 
     }
 
-    public static View initDateTimePicker(final Context context, final DataSelectListener listener) {
-         View view = null;
+    public static View initDateTimePicker(final Context context, final PickerSelectListener listener,int minYear,int maxYear) {
+        View view = null;
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -1358,7 +1359,14 @@ public class CommonUtility {
 
         // 年
         final WheelView wv_year = (WheelView) view.findViewById(R.id.year);
-        wv_year.setViewAdapter(new NumericWheelAdapter(context, year, 2100));// 设置"年"的显示数据
+        if(minYear!=0){
+            wv_year.setViewAdapter(new NumericWheelAdapter(context, minYear, year));// 设置"年"的显示数据
+        }else if(maxYear!=0){
+            wv_year.setViewAdapter(new NumericWheelAdapter(context, year, maxYear));// 设置"年"的显示数据
+        }else if(minYear!=0&&maxYear!=0){
+            wv_year.setViewAdapter(new NumericWheelAdapter(context, minYear, maxYear));// 设置"年"的显示数据
+        }
+
         wv_year.setCyclic(true);// 可循环滚动
 //            wv_year.setLabel("年");// 添加文字
         wv_year.setCurrentItem(0);// 初始化时显示的数据
@@ -1457,9 +1465,41 @@ public class CommonUtility {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-              listener.onCancleClick();
+                listener.onCancleClick();
             }
         });
         return view;
     }
+
+    public static View InitTextPicker(final Context context, final PickerSelectListener listener, final String[] values) {
+        View view;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.layout_text_picker, null);
+        final WheelView mWheelView = (WheelView) view.findViewById(R.id.wv_text);
+        mWheelView.setViewAdapter(new TextWheelAdapter(context, values));
+//        mWheelView.setCyclic(true);
+        mWheelView.setCurrentItem(0);
+
+
+        Button btn_sure = (Button) view.findViewById(R.id.btn_datetime_sure);
+        Button btn_cancel = (Button) view.findViewById(R.id.btn_datetime_cancel);
+        // 确定
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                listener.onOKClick(mWheelView.getCurrentItem(),values[mWheelView.getCurrentItem()]);
+            }
+        });
+        // 取消
+        final View finalView = view;
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                listener.onCancleClick();
+            }
+        });
+        return view;
+    }
+
 }

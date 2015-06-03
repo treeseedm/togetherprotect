@@ -2,7 +2,9 @@ package com.myproduct.freetogether.bean;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class Me {
+import java.io.Serializable;
+
+public class Me implements Serializable {
     public static final String[] sexValues = new String[]{ "男生", "女生", "情侣", "家庭"};//不限(文本显示：不限)，男生(男生), 女生(女生), 情侣(情侣), 家庭(小家庭)
     public static final String[] bloodValues=new String[]{"O型","A型","B型","AB型"};// 0( O型) ,1(A型), 2(B型),3(AB型)
     public static final String[] weightValues=new String[]{"40-50","50-60","60-70","70-80","80-90","90以上"};//
@@ -16,6 +18,7 @@ public class Me {
     public String blood;
     public String weight;
     public String lang;
+    public String myInfo;
 
     public String getJsonMe() {
         JSONObject object = new JSONObject();

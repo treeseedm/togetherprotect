@@ -15,13 +15,8 @@ import yiqihi.mobile.com.commonlib.BaseTask;
 
 public class YQHBaseTaskByListeners extends BaseTask implements MsgEvent{
     private static final  String TAG="YQHBaseTask";
-    public static String ACTION_READSEARCHHOT="readSearchHot";
-    public static String ACTION_SEARCHTRIP="searchTrip";
-    public static final String ACTION_FINDLOCATION="findLocation";
-    public static final String ACTION_UPDATEPANEL="updatepanel";
-    public static final String ACTION_UPDATEFILTER="updtefilter";
-    public static final String ACTION_CHANGETEXT="changetext";
     public static final String ACTION_READACTIVITIES="readActivities";
+    public static final String ACTION_WRITEREQUIRE="writeRequire";
     private String mAction;
     private String mParams;
     private Context mContext;
@@ -52,7 +47,7 @@ public class YQHBaseTaskByListeners extends BaseTask implements MsgEvent{
 
 
     @Override
-    protected Object doInBackground(Void... params) {
+    protected Object doInBackground(Object... params) {
         ClientUtil.getClientInstant().bind(this);
         Log.e(TAG,"request params:"+mParams);
         ClientUtil.getClientInstant().postUrl(mAction, getServerUrl(), mParams);
@@ -64,7 +59,12 @@ public class YQHBaseTaskByListeners extends BaseTask implements MsgEvent{
         ((Activity)mContext).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mMsgEvent.onResponse(type,action,key,data);
+                try{
+                    mMsgEvent.onResponse(type,action,key,data);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
     }

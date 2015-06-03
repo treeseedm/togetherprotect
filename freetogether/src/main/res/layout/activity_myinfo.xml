@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android_custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/ll_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/common_bg">
@@ -37,11 +38,11 @@
                         android:drawablePadding="20dp" />
 
                     <EditText
-                        android:id="@+id/et_title"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_contactPerson"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:background="@color/color_00000000" />
                 </LinearLayout>
 
                 <View
@@ -61,11 +62,11 @@
                         android:text="手机号码*" />
 
                     <EditText
-                        android:id="@+id/et_location"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_contactMobile"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:background="@color/color_00000000" />
                 </LinearLayout>
 
                 <View
@@ -85,11 +86,11 @@
                         android:text="微信号码*" />
 
                     <EditText
-                        android:id="@+id/et_weixinnum"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_contactMSN"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:background="@color/color_00000000" />
                 </LinearLayout>
 
                 <View
@@ -109,11 +110,11 @@
                         android:text="QQ号码*" />
 
                     <EditText
-                        android:id="@+id/et_qqnum"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_contactQQ"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="一句话说明需求" />
+                        android:background="@color/color_00000000" />
                 </LinearLayout>
 
                 <View
@@ -134,22 +135,23 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/tv_sex"
+                            android:id="@+id/tv_sex_label"
                             android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="性别" />
 
                         <TextView
-                            android:layout_toRightOf="@+id/tv_datedes"
-                            android:id="@+id/et_date"
+                            android:layout_toRightOf="@+id/tv_sex_label"
+                            android:id="@+id/tv_sex"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />
 
                         <ImageView
+                            android:id="@+id/iv_go_sex"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -170,15 +172,16 @@
                             android:text="生日" />
 
                         <TextView
-                            android:layout_toRightOf="@+id/tv_datedes"
+                            android:layout_toRightOf="@+id/tv_birthdayText"
                             android:id="@+id/tv_birthday"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />
 
                         <ImageView
+                            android:id="@+id/iv_go_birthday"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -209,18 +212,19 @@
                             android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="性别" />
+                            android:text="身高" />
 
                         <TextView
                             android:layout_toRightOf="@+id/tv_heighttext"
                             android:id="@+id/tv_height"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />
 
                         <ImageView
+                            android:id="@+id/iv_go_height"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -244,12 +248,13 @@
                             android:layout_toRightOf="@+id/tv_xuexingtext"
                             android:id="@+id/tv_xuexing"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />
 
                         <ImageView
+                            android:id="@+id/iv_go_xuexing"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -286,12 +291,13 @@
                             android:layout_toRightOf="@+id/tv_weighttext"
                             android:id="@+id/tv_weight"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />/>
 
                         <ImageView
+                            android:id="@+id/iv_go_weight"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -315,12 +321,13 @@
                             android:layout_toRightOf="@+id/tv_languagetext"
                             android:id="@+id/tv_language"
                             android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:hint="一句话说明需求" />
+                            android:background="@color/color_00000000" />/>
 
                         <ImageView
+                            android:id="@+id/iv_go_language"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -353,26 +360,20 @@
                         android:layout_toRightOf="@+id/iv_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="其他描述" />
-
-                    <EditText
-                        android:id="@+id/et_des"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minLines="3"
-                        android:layout_below="@+id/iv_edit"
-                        android:hint="请输入信息..."
-                        android:layout_alignLeft="@+id/tv_destext" />
+                        android:text="隐私保护" />
                 </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                   >
 
                     <Button
+                        android:id="@+id/btn_ok"
+                        android:background="@color/dark_light"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:textColor="@color/white"
                         android:text="确认保存" />
                 </LinearLayout>
             </LinearLayout>

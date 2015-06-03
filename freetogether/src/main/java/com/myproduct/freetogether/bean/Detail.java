@@ -2,7 +2,9 @@ package com.myproduct.freetogether.bean;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class Detail {
+import java.io.Serializable;
+
+public class Detail implements Serializable{
     public static final String[] ageValues = new String[]{"8-26岁", "27-35岁", "5-43岁", "44-52岁", "53-63岁"};//0(文本显示：18-26岁),1(27-35岁),2(35-43岁),3(44-52岁),4(53-63岁)
     public static final String[] sexValues = new String[]{"不限", "男生", "女生", "情侣", "家庭"};//不限(文本显示：不限)，男生(男生), 女生(女生), 情侣(情侣), 家庭(小家庭)
     public static final String[] jobValues=new String[]{"不限","学生","上班族","自由职业","老板"};//0(不限),1(学生),2(上班族),3(自由职业),4(老板)
@@ -15,7 +17,7 @@ public class Detail {
     public static final String[] typeValues=new String[]{"萌萌哒","甜美公主","花季少女",
     "熟女","优雅女士","阳光男孩","靠谱青年","少年大叔","青春大爷"};//0(萌萌哒)，1(甜美公主),2(花季少女),3(熟女),4(优雅女士),5(阳光男孩),6(靠谱青年),7(少年大叔),8(青春大爷)
     public int age;
-    public String sex;
+    public int sex;
     public int job;
     public int lang;
     public int height;
@@ -24,7 +26,7 @@ public class Detail {
     public int type;
     public String note;
     public String model;
-
+    public String detail;
     public String getJsonDetail() {
         JSONObject object = new JSONObject();
         object.put("age", age);

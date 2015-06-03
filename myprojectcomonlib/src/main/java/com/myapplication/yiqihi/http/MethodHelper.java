@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 
+import org.bson.BSONObject;
+
 public class MethodHelper {
     private static final String MODULENAME="mobile";
     public static BasicDBObject getSearchRequestParams(){
@@ -107,6 +109,11 @@ public class MethodHelper {
         oReq.append("catalog",catalog);
         oReq.append("country",country);
         oReq.append("location",location);
+        return oReq;
+    }
+    public static BasicDBObject writeRequire(BasicDBObject oAcvitity){
+        BasicDBObject oReq=ClientUtil.getClientInstant().newQuery(MODULENAME,321);
+        oReq.putAll((BSONObject)oAcvitity);
         return oReq;
     }
 
