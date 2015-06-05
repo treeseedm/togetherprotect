@@ -141,7 +141,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="3"  android:textSize="14sp"
+                       android:textSize="14sp"
                         android:textColor="@color/dark" android:background = "@color/color_00000000" />
                 </LinearLayout>
 
@@ -205,7 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:hint="3"  android:textSize="14sp"
+                         android:textSize="14sp"
                         android:textColor="@color/dark" android:background = "@color/color_00000000"/>
                 </LinearLayout>
 
@@ -254,6 +254,7 @@
 
                     <EditText
                         android:id="@+id/et_money"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

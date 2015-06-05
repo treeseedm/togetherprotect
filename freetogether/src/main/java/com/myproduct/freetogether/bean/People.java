@@ -1,13 +1,14 @@
 package com.myproduct.freetogether.bean;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mongodb.BasicDBObject;
 
 public class People {
     public int person;
 
-    public String getJsonPeople() {
-        JSONObject object = new JSONObject();
+    public BasicDBObject getJsonPeople() {
+        BasicDBObject object = new BasicDBObject();
         object.put("person", person);
-        return object.toString();
+        return object;
     }
 }

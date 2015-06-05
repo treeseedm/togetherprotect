@@ -5,19 +5,19 @@ import com.mongodb.BasicDBObject;
 
 import java.util.List;
 
-public class GuideRequest {
+public class GuideRequest extends  BaseResponse{
     public static final String[] CARGEWAY=new String[]{"AA制平摊","我付60%，你付40%","我付70%，你付30%"};
     public String bizType;
     public int catalog;
     public String title;
     public String location;
-    public String deptData;
+    public String deptDate;
     public String Day;
     public Car car;
     public People people;
     public int recruiteCount;
-    public String price;
-    public String creditPrice;
+    public int price;
+    public int creditPrice;
     public int chargeWay;
     public String description;
     public int expire;
@@ -37,7 +37,7 @@ public class GuideRequest {
         object.put("catalog", catalog);
         object.put("title", title);
         object.put("location", location);
-        object.put("deptData", deptData);
+        object.put("deptDate", deptDate);
         object.put("Day", Day);
         if(car!=null)
         object.put("car", car.getJsonCar());
@@ -60,7 +60,7 @@ public class GuideRequest {
         object.put("detail", detail.getJsonDetail());
         if(me!=null)
         object.put("me", me.getJsonMe());
-
+        object.put("tags",new JSONArray());
         return object;
     }
 }

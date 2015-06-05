@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.myapplication.yiqihi.http.ClientUtil;
 import com.myapplication.yiqihi.http.MethodHelper;
 import com.myapplication.yiqihi.task.YQHBaseTaskByListeners;
 import com.myproduct.freetogether.bean.ActivitiesResponse;
@@ -30,11 +31,16 @@ import com.myproduct.freetogether.bean.Detail;
 import com.myproduct.freetogether.bean.GuideRequest;
 import com.myproduct.freetogether.bean.Me;
 import com.myproduct.freetogether.bean.People;
+import com.myproduct.freetogether.bean.Picture;
 
+import org.x.net.Client;
 import org.x.net.Msg;
 import org.x.net.MsgEvent;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import http.HttpImageUtils;
 import yiqihi.mobile.com.commonlib.BaseActivity;
@@ -43,10 +49,10 @@ import yiqihi.mobile.com.commonlib.PickerSelectListener;
 import yiqihi.mobile.com.commonlib.UploadImage;
 
 public class PublishGuideActivity extends BaseActivity implements View.OnClickListener, PickerSelectListener, MsgEvent {
-    private static final String TAG="PublishGuideActivity";
-    private static final String ID="ID";
-    private static final String ADDPHOTOTAG="add";
-    private static final String DELETEPHOTOTAG="delete";
+    private static final String TAG = "PublishGuideActivity";
+    private static final String ID = "ID";
+    private static final String ADDPHOTOTAG = "add";
+    private static final String DELETEPHOTOTAG = "delete";
     private TextView tv_title, et_date, tv_car, tv_pingtan, tv_myinfo_text, tv_myfino, tv_yaoqiu, tv_savetime;
     private ImageView iv_phone, iv_more;
     private ImageView iv_go_data, iv_go_car, iv_go_pingtan, iv_myinfo_go, iv_go_savetime, iv_add1, iv_add2, iv_add3;
@@ -70,7 +76,8 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void initParams() {
-       mId=getIntent().getStringExtra(ID);
+        ClientUtil.getClientInstant().bind(this);
+        mId = getIntent().getStringExtra(ID);
     }
 
     @Override
@@ -120,7 +127,7 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
 
         tv_yaoqiu = findViewByIdHelper(R.id.tv_yaoqiu);
 
-        tv_myfino=findViewByIdHelper(R.id.tv_myfino);
+        tv_myfino = findViewByIdHelper(R.id.tv_myfino);
     }
 
     @Override
@@ -178,7 +185,7 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
     private void initCarPickerPop(boolean isShow, PopupWindow popupWindow, String[] values, final TextView textView) {
         if (popupWindow == null) {
 
-            popupWindow = new PopupWindow( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            popupWindow = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
             final PopupWindow finalPopupWindow = popupWindow;
             View dataPopView = CommonUtility.InitTextPicker(PublishGuideActivity.this, new PickerSelectListener() {
@@ -232,33 +239,33 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
                 startActivityForResult(new Intent(PublishGuideActivity.this, MyInfoActivity.class), 1);
                 break;
             case R.id.rl_yaoqiu:
-                startActivityForResult(new Intent(PublishGuideActivity.this,DetailActivity.class),2);
+                startActivityForResult(new Intent(PublishGuideActivity.this, DetailActivity.class), 2);
                 break;
             case R.id.tv_savetime:
             case R.id.iv_go_savetime:
                 initCarPickerPop(true, mExpirePop, GuideRequest.getExpire(), tv_savetime);
                 break;
             case R.id.iv_add1:
-                if(DELETEPHOTOTAG.equals(view.getTag())){
+                if (DELETEPHOTOTAG.equals(view.getTag())) {
                     sdv_image1.setImageResource(R.drawable.bg_takephone);
-                    changeAddImageState(view,ADDPHOTOTAG,R.drawable.icon_addphone);
+                    changeAddImageState(view, ADDPHOTOTAG, R.drawable.icon_addphone);
                     break;
                 }
             case R.id.iv_add2:
-                if(DELETEPHOTOTAG.equals(view.getTag())){
+                if (DELETEPHOTOTAG.equals(view.getTag())) {
                     sdv_image2.setImageResource(R.drawable.bg_takephone);
                     changeAddImageState(view, ADDPHOTOTAG, R.drawable.icon_addphone);
                     break;
                 }
             case R.id.iv_add3:
-                if(DELETEPHOTOTAG.equals(view.getTag())){
+                if (DELETEPHOTOTAG.equals(view.getTag())) {
                     sdv_image2.setImageResource(R.drawable.bg_takephone);
                     changeAddImageState(view, ADDPHOTOTAG, R.drawable.icon_addphone);
                     break;
                 }
-                if(ADDPHOTOTAG.equals(view.getTag())){
-                    Intent intent=new Intent(PublishGuideActivity.this, TakePhotoActivity.class);
-                    mSelectPicPosition=view.getId();
+                if (ADDPHOTOTAG.equals(view.getTag())) {
+                    Intent intent = new Intent(PublishGuideActivity.this, TakePhotoActivity.class);
+                    mSelectPicPosition = view.getId();
                     startActivityForResult(intent, 1);
                 }
                 break;
@@ -279,10 +286,12 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
         et_date.setText(dateStr);
         onCancleClick();
     }
-    private void changeAddImageState(View view,String tag,int resid) {
+
+    private void changeAddImageState(View view, String tag, int resid) {
         view.setTag(tag);
         ((ImageView) view).setImageResource(resid);
     }
+
     @Override
     public void onCancleClick() {
         if (mDataPickerPop != null)
@@ -318,7 +327,7 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
                 if (null != data) {
                     final ContentResolver cr = this.getContentResolver();
                     final Uri uri = data.getData();
-                    switch (mSelectPicPosition){
+                    switch (mSelectPicPosition) {
                         case R.id.iv_add1:
                             sdv_image1.setImageURI(uri);
                             iv_add1.setTag(DELETEPHOTOTAG);
@@ -340,15 +349,22 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-
-                            String filepath = HttpImageUtils.getFilePath(uri, getApplicationContext());
-                            Log.i(TAG,"filepath=="+filepath);
-                            Bitmap mBitmap = HttpImageUtils.getSmallBitmap(HttpImageUtils.fixSlashes(filepath));
-                            // //发送到服务器
-                            if (mBitmap == null) {
-                                return;
+                            try {
+                                String filepath = HttpImageUtils.getFilePath(uri, getApplicationContext());
+                                Log.i(TAG, "filepath==" + filepath);
+                                Bitmap mBitmap = HttpImageUtils.getSmallBitmap(HttpImageUtils.fixSlashes(filepath));
+                                // //发送到服务器
+                                if (mBitmap == null) {
+                                    return;
+                                }
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                                byte[] byteArray = stream.toByteArray();
+                                ClientUtil.getClientInstant().uploadPicture("", filepath, "", byteArray);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                            UploadImage.uploadFile(mBitmap, PublishGuideActivity.this);
+
 
                             // pic.setImageBitmap(comp(bitmap));
 
@@ -365,51 +381,75 @@ public class PublishGuideActivity extends BaseActivity implements View.OnClickLi
                 break;
         }
     }
-    public void save(){
-        try{
-            GuideRequest request=new GuideRequest();
-            if(TextUtils.isEmpty(mId)){
-                request.bizType="0";
-            }else
-                request.bizType=mId;
-            request.location=et_location.getText().toString();
-            request.deptData=et_date.getText().toString();
-            request.Day=et_datanum.getText().toString();
-            Car car=new Car();
-            car.enabled=tv_car.getTag()==null?0:Integer.valueOf(tv_car.getTag().toString());
-            request.car=car;
-            People people=new People();
-            people.person=et_totalpeople.getText().toString().length()==0?0:Integer.valueOf(et_totalpeople.getText().toString());
-            request.people=people;
-            request.recruiteCount=et_zhaomupeople.getText().toString().length()==0?0:Integer.valueOf(et_zhaomupeople.getText().toString());
-            request.price=et_money.getText().toString();
-            request.chargeWay=tv_pingtan.getTag()==null?0:Integer.valueOf(tv_pingtan.getTag().toString());
-            request.description=et_des.getText().toString();
-            request.me=me;
-            request.detail=mDetail;
-            request.expire=tv_savetime.getTag()==null?0:Integer.valueOf(tv_savetime.getTag().toString());
-            YQHBaseTaskByListeners task=new YQHBaseTaskByListeners(PublishGuideActivity.this,true,
-                    YQHBaseTaskByListeners.ACTION_WRITEREQUIRE, MethodHelper.writeRequire(request.getRequestMsg()).toString(),this);
+
+    public void save() {
+        try {
+            GuideRequest request = new GuideRequest();
+            if (TextUtils.isEmpty(mId)) {
+                request.bizType = "0";
+            } else
+                request.bizType = mId;
+            request.title = et_title.getText().toString();
+            request.location = et_location.getText().toString();
+            if (TextUtils.isEmpty(et_date.getText().toString())) {
+                CommonUtility.showToast(this, "请选择出发日期!");
+                et_date.requestFocus();
+                return;
+            }
+            request.deptDate = et_date.getText().toString();
+            request.Day = et_datanum.getText().toString();
+            Car car = new Car();
+            car.enabled = tv_car.getTag() == null ? 0 : Integer.valueOf(tv_car.getTag().toString());
+            request.car = car;
+            People people = new People();
+            people.person = et_totalpeople.getText().toString().length() == 0 ? 0 : Integer.valueOf(et_totalpeople.getText().toString());
+            request.people = people;
+            request.recruiteCount = et_zhaomupeople.getText().toString().length() == 0 ? 0 : Integer.valueOf(et_zhaomupeople.getText().toString());
+            if (!TextUtils.isEmpty(et_money.getText()))
+                request.price = Integer.valueOf(et_money.getText().toString());
+            request.chargeWay = tv_pingtan.getTag() == null ? 0 : Integer.valueOf(tv_pingtan.getTag().toString());
+            request.description = et_des.getText().toString();
+            request.me = me;
+            request.detail = mDetail;
+            request.expire = tv_savetime.getTag() == null ? 0 : Integer.valueOf(tv_savetime.getTag().toString());
+            request.pictures = listPicture;
+            YQHBaseTaskByListeners task = new YQHBaseTaskByListeners(PublishGuideActivity.this, true,
+                    YQHBaseTaskByListeners.ACTION_WRITEREQUIRE, MethodHelper.writeRequire(request.getRequestMsg()).toString(), this);
             task.exec(false);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private List<Picture> listPicture = new ArrayList<Picture>();
+
     @Override
-    public void onResponse(Msg.DataType type, String action, String key, Object data) {
-        String result = data.toString();
-        Log.e(TAG, "response:" + result);
-        if (TextUtils.isEmpty(result)) {
-            CommonUtility.showToast(this, "发布失败!");
-        } else {
-            BaseResponse mResponse = JSON.parseObject(result, BaseResponse.class);
-            if (!mResponse.xeach) {
-                CommonUtility.showToast(this, "发布失败!");
-            } else {
-                CommonUtility.showToast(this, "发布成功!");
-                finish();
+    public void onResponse(Msg.DataType type,final String action, String key, final Object data) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String result = data.toString();
+                Log.e(TAG, "response:" + result);
+
+                if (TextUtils.isEmpty(result)) {
+                    CommonUtility.showToast(PublishGuideActivity.this, "操作失败!");
+                } else {
+                    BaseResponse mResponse = JSON.parseObject(result, BaseResponse.class);
+
+                    if (!mResponse.xeach) {
+                        CommonUtility.showToast(PublishGuideActivity.this, "操作失败!");
+                    } else {
+                        if (YQHBaseTaskByListeners.ACTION_WRITEREQUIRE.equals(action)) {
+                            CommonUtility.showToast(PublishGuideActivity.this, "发布成功");
+                        } else if (YQHBaseTaskByListeners.ACTION_UPLOAD.equals(action)) {
+                            listPicture.add(JSON.parseObject(result, Picture.class));
+                            CommonUtility.showToast(PublishGuideActivity.this, "上传成功!");
+                        }
+
+                    }
+                }
             }
-        }
+        });
+
     }
 }

@@ -1,6 +1,7 @@
 package com.myproduct.freetogether.bean;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mongodb.BasicDBObject;
 
 import java.io.Serializable;
 
@@ -20,8 +21,8 @@ public class Me implements Serializable {
     public String lang;
     public String myInfo;
 
-    public String getJsonMe() {
-        JSONObject object = new JSONObject();
+    public BasicDBObject getJsonMe() {
+        BasicDBObject object = new BasicDBObject();
         object.put("contactPerson", contactPerson);
         object.put("contactMobile", contactMobile);
         object.put("contactQQ", contactQQ);
@@ -32,6 +33,6 @@ public class Me implements Serializable {
         object.put("blood", blood);
         object.put("weight", weight);
         object.put("lang", lang);
-        return object.toString();
+        return object;
     }
 }

@@ -16,10 +16,11 @@ import org.x.net.MsgEvent;
 import de.greenrobot.event.EventBus;
 import yiqihi.mobile.com.commonlib.BaseTask;
 
-public class YQHBaseTaskByListeners extends BaseTask implements MsgEvent {
+public class YQHBaseTaskByListeners extends BaseTask implements MsgEvent{
     private static final String TAG = "YQHBaseTask";
     public static final String ACTION_READACTIVITIES = "readActivities";
     public static final String ACTION_WRITEREQUIRE = "writeRequire";
+    public static final String ACTION_UPLOAD="upload";
     private String mAction;
     private String mParams;
     private Context mContext;

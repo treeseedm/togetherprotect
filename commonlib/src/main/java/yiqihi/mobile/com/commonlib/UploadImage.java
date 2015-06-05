@@ -32,31 +32,32 @@ public class UploadImage {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
 
-        Log.i("MyAcountActivity", byteArray.length + "");
-        BaseTaskForFile task = new BaseTaskForFile(context, false, byteArray) {
-            @Override
-            public HashMap<String, String> getParams() {
-                HashMap<String, String> params = new HashMap<String, String>();
-                return params;
-            }
-
-            @Override
-            public String getServerUrl() {
-//                return Constants.SERVER_URL + "/profile/userImageUploader.jsp";
-                return "http://10.144.32.112:8080/Upload/UploadFile";
-            }
-
-            @Override
-            public void onPost(boolean success, UploadPictureResult result, String errorMessage) {
-//                if (success) {
-//                    ivLogo.setImageBitmap(bitmap);
-//                    ivLogo.invalidate();
-//                } else {
-//                    CommonUtility.showMiddleToast(MyAcountActivity.this, errorMessage);
-//                }
-            }
-        };
-        task.exec();
+//
+//        Log.i("MyAcountActivity", byteArray.length + "");
+//        BaseTaskForFile task = new BaseTaskForFile(context, false, byteArray) {
+//            @Override
+//            public HashMap<String, String> getParams() {
+//                HashMap<String, String> params = new HashMap<String, String>();
+//                return params;
+//            }
+//
+//            @Override
+//            public String getServerUrl() {
+////                return Constants.SERVER_URL + "/profile/userImageUploader.jsp";
+//                return "http://10.144.32.112:8080/Upload/UploadFile";
+//            }
+//
+//            @Override
+//            public void onPost(boolean success, UploadPictureResult result, String errorMessage) {
+////                if (success) {
+////                    ivLogo.setImageBitmap(bitmap);
+////                    ivLogo.invalidate();
+////                } else {
+////                    CommonUtility.showMiddleToast(MyAcountActivity.this, errorMessage);
+////                }
+//            }
+//        };
+//        task.exec();
     }
 
     public Bitmap getBitmapFromUri(Uri uri, Context mContext) {

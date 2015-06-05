@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.myapplication.yiqihi.constant.Constants;
 import com.myapplication.yiqihi.event.BaseMessageEvent;
+import com.myapplication.yiqihi.http.ClientUtil;
 import com.myapplication.yiqihi.http.MethodHelper;
 import com.myapplication.yiqihi.task.YQHBaseTask;
 import com.myapplication.yiqihi.task.YQHBaseTaskByListeners;
@@ -150,16 +151,22 @@ public class ActivityFragment extends BaseFragment implements MyListView.OnListV
     public void onResponse(Msg.DataType type, String action, String key, Object data) {
         myListView.onRefreshComplete();
         String result = data.toString();
-        System.out.println("哇咔咔:" + result);
+        Log.e(TAG, "response:" + result);
         if (TextUtils.isEmpty(result)) {
             CommonUtility.showToast(getActivity(), "获取数据失败!");
         } else {
-            mResponse = JSON.parseObject(result, ActivitiesResponse.class);
-            if (!mResponse.xeach) {
-                CommonUtility.showToast(getActivity(), "获取数据失败!");
-            } else {
-                bindData();
+            if(YQHBaseTask.ACTION_READACTIVITIES.equals(action)){
+                mResponse = JSON.parseObject(result, ActivitiesResponse.class);
+                if(mResponse==null){
+                    return;
+                }
+                if (!mResponse.xeach) {
+                    CommonUtility.showToast(getActivity(), "获取数据失败!");
+                } else {
+                    bindData();
+                }
             }
+
         }
     }
 }
